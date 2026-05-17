@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages Anleitung – Kita Lernprinzipien</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#F8FAFC;color:#1E293B;font-size:15px;line-height:1.65}
+.page{max-width:820px;margin:0 auto;padding:32px 22px 60px}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 100%);color:white;border-radius:18px;padding:32px 36px;margin-bottom:30px;position:relative;overflow:hidden}
+.hdr::before{content:'🐙';position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:6rem;opacity:.1;pointer-events:none}
+.hdr-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:12px}
+.hdr h1{font-weight:900;font-size:1.6rem;color:white;line-height:1.15;margin-bottom:6px}
+.hdr p{font-size:.88rem;color:rgba(255,255,255,.72);max-width:480px}
+.hdr-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hdr-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.85)}
+
+/* OVERVIEW BOXES */
+.ov-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:28px}
+@media(max-width:560px){.ov-grid{grid-template-columns:1fr}}
+.ov-box{background:white;border:1.5px solid #E2E8F0;border-radius:13px;padding:16px;text-align:center}
+.ov-icon{font-size:1.8rem;margin-bottom:8px}
+.ov-box h4{font-weight:800;font-size:.85rem;color:#1E293B;margin-bottom:3px}
+.ov-box p{font-size:.75rem;color:#64748B;margin:0}
+
+/* PHASE HEADINGS */
+.phase{display:flex;align-items:center;gap:10px;margin:30px 0 14px}
+.ph-num{width:34px;height:34px;border-radius:50%;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;color:white;flex-shrink:0}
+.ph-num.blue{background:#3B82F6}
+.ph-num.green{background:#16A34A}
+.ph-num.purple{background:#7C3AED}
+.phase h2{font-weight:900;font-size:1.05rem;color:#1E293B}
+.phase-div{height:2px;background:linear-gradient(to right,#3B82F6,transparent);border-radius:1px;margin-bottom:16px}
+.phase-div.green{background:linear-gradient(to right,#16A34A,transparent)}
+.phase-div.purple{background:linear-gradient(to right,#7C3AED,transparent)}
+
+/* STEP CARDS */
+.step{background:white;border:1.5px solid #E2E8F0;border-radius:13px;padding:18px 20px;margin-bottom:12px}
+.step-hd{display:flex;align-items:flex-start;gap:13px;margin-bottom:10px}
+.step-dot{width:28px;height:28px;border-radius:8px;font-weight:900;font-size:.8rem;display:flex;align-items:center;justify-content:center;color:white;flex-shrink:0;margin-top:1px}
+.step-dot.b{background:#3B82F6}.step-dot.g{background:#16A34A}.step-dot.p{background:#7C3AED}
+.step-hd h3{font-weight:800;font-size:.95rem;color:#1E293B;line-height:1.3}
+.step p{font-size:.87rem;color:#475569;line-height:1.6;margin-bottom:8px}
+.step p:last-child{margin-bottom:0}
+.step strong{color:#1E293B;font-weight:700}
+
+/* SCREENSHOTS / VISUAL HINTS */
+.mock{background:#F1F5F9;border:1.5px solid #CBD5E1;border-radius:10px;padding:14px 16px;margin:10px 0;font-size:.82rem;color:#475569;font-family:'JetBrains Mono',monospace}
+.mock .mock-bar{background:#E2E8F0;border-radius:6px 6px 0 0;padding:6px 12px;margin:-14px -16px 12px;display:flex;gap:6px;align-items:center}
+.mock .mock-dot{width:10px;height:10px;border-radius:50%}
+.mock-url{background:#E8F4FD;border:1px solid #BAE6FD;border-radius:6px;padding:4px 10px;font-size:.78rem;color:#0369A1;font-family:'JetBrains Mono',monospace;margin:8px 0;display:inline-block}
+.path{font-family:'JetBrains Mono',monospace;background:#F1F5F9;border:1px solid #CBD5E1;border-radius:5px;padding:2px 8px;font-size:.8rem;color:#334155}
+.cmd{font-family:'JetBrains Mono',monospace;background:#1E293B;color:#7DD3FC;border-radius:8px;padding:10px 14px;font-size:.82rem;margin:8px 0;display:block}
+.tip{background:#FEF3C7;border:1.5px solid #FCD34D;border-left:4px solid #D97706;border-radius:10px;padding:12px 15px;font-size:.83rem;color:#78350F;margin:10px 0;display:flex;gap:10px;align-items:flex-start}
+.tip .ti{font-size:1rem;flex-shrink:0;margin-top:1px}
+.success{background:#DCFCE7;border:1.5px solid #86EFAC;border-left:4px solid #16A34A;border-radius:10px;padding:12px 15px;font-size:.83rem;color:#14532D;margin:10px 0;display:flex;gap:10px;align-items:flex-start}
+.success .si{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* URL RESULT */
+.url-result{background:linear-gradient(135deg,#0F172A,#1E3A5F);border-radius:13px;padding:22px 24px;margin:14px 0;text-align:center;color:white}
+.url-result p{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.url-result .url{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:500;color:#7DD3FC;background:rgba(255,255,255,.08);border-radius:8px;padding:10px 20px;display:inline-block;margin-bottom:8px}
+.url-result .url span{color:rgba(255,255,255,.45)}
+.url-result small{font-size:.72rem;color:rgba(255,255,255,.45)}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.check-item{display:flex;align-items:flex-start;gap:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:9px;padding:10px 13px;font-size:.85rem;color:#334155}
+.check-item .ck{font-size:1rem;flex-shrink:0}
+.check-item strong{color:#1E293B}
+
+/* FOLDER TREE */
+.tree{background:#1E293B;border-radius:10px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:#E2E8F0;margin:10px 0;line-height:1.9}
+.tree .f{color:#7DD3FC}.tree .d{color:#FCD34D}.tree .c{color:#6B7280;font-style:italic}
+
+/* FAQ */
+.faq{background:white;border:1.5px solid #E2E8F0;border-radius:13px;overflow:hidden;margin-bottom:10px}
+.faq-q{padding:14px 18px;font-weight:800;font-size:.9rem;color:#1E293B;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.faq-a{padding:0 18px 14px;font-size:.85rem;color:#475569;line-height:1.65;border-top:1px solid #F1F5F9}
+
+/* FOOTER */
+.footer{margin-top:36px;border-top:2px solid #E2E8F0;padding-top:18px;text-align:center;font-size:.78rem;color:#94A3B8}
+.footer strong{color:#475569}
+
+@media print{body{background:white}.page{padding:12px 16px}* {break-inside:avoid-page}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-tag">🐙 GitHub Pages · Schritt-für-Schritt</div>
+    <h1>Deinen Selbstlernkurs online stellen</h1>
+    <p>Eine kostenlose, öffentliche Website – erreichbar für alle deine Schülerinnen über einen einfachen Link.</p>
+    <div class="hdr-pills">
+      <span class="hdr-pill">✅ Komplett kostenlos</span>
+      <span class="hdr-pill">⏱ ca. 15 Minuten</span>
+      <span class="hdr-pill">🔒 Kein Server nötig</span>
+      <span class="hdr-pill">🌍 Weltweit erreichbar</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="ov-grid">
+    <div class="ov-box">
+      <div class="ov-icon">📁</div>
+      <h4>Schritt 1</h4>
+      <p>GitHub-Account erstellen</p>
+    </div>
+    <div class="ov-box">
+      <div class="ov-icon">⬆️</div>
+      <h4>Schritt 2</h4>
+      <p>Dateien hochladen</p>
+    </div>
+    <div class="ov-box">
+      <div class="ov-icon">🌍</div>
+      <h4>Schritt 3</h4>
+      <p>GitHub Pages aktivieren</p>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE 1 ═══ -->
+  <div class="phase">
+    <div class="ph-num blue">1</div>
+    <h2>GitHub-Account erstellen & Repository anlegen</h2>
+  </div>
+  <div class="phase-div"></div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot b">1</div>
+      <h3>Gehe auf github.com und erstelle einen kostenlosen Account</h3>
+    </div>
+    <p>Öffne <strong>github.com</strong> in deinem Browser und klicke oben rechts auf <strong>„Sign up"</strong>. Wähle eine E-Mail-Adresse und ein Passwort. Der kostenlose Plan (Free) reicht vollkommen aus.</p>
+    <div class="tip"><span class="ti">💡</span><span>Tipp für den Benutzernamen: Wähle etwas Professionelles wie <strong>tanja-todte</strong> oder <strong>bfs-kita-eichstaett</strong> – der Name erscheint später in der URL deiner Website.</span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot b">2</div>
+      <h3>Neues Repository erstellen</h3>
+    </div>
+    <p>Nach dem Login: Klicke oben rechts auf das <strong>+ Symbol</strong> → <strong>„New repository"</strong>.</p>
+    <p>Fülle das Formular so aus:</p>
+    <div class="checklist">
+      <div class="check-item"><span class="ck">📝</span><div><strong>Repository name:</strong> <span class="path">kita-lernprinzipien</span> (genau so, ohne Leerzeichen)</div></div>
+      <div class="check-item"><span class="ck">🔓</span><div><strong>Visibility:</strong> <strong>Public</strong> auswählen – nur so funktioniert GitHub Pages kostenlos</div></div>
+      <div class="check-item"><span class="ck">☑️</span><div><strong>„Add a README file"</strong> ankreuzen</div></div>
+    </div>
+    <p>Klicke dann auf den grünen Button <strong>„Create repository"</strong>.</p>
+    <div class="success"><span class="si">✅</span><span>Du siehst jetzt dein neues leeres Repository – hier landen gleich deine Dateien.</span></div>
+  </div>
+
+  <!-- ═══ PHASE 2 ═══ -->
+  <div class="phase" style="margin-top:30px">
+    <div class="ph-num green">2</div>
+    <h2>Dateien hochladen</h2>
+  </div>
+  <div class="phase-div green"></div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot g">3</div>
+      <h3>Die 3 Dateien aus dem ZIP-Ordner auf deinen Computer speichern</h3>
+    </div>
+    <p>Aus der Claude-Ausgabe hast du diese 3 Dateien erhalten (alle im ZIP-Ordner <span class="path">kita-lernprinzipien</span>):</p>
+    <div class="tree">
+      <div><span class="d">kita-lernprinzipien/</span></div>
+      <div>&nbsp;&nbsp;├── <span class="f">index.html</span> &nbsp;<span class="c">← der komplette Selbstlernkurs</span></div>
+      <div>&nbsp;&nbsp;├── <span class="f">README.md</span> &nbsp;&nbsp;<span class="c">← Beschreibung des Projekts</span></div>
+      <div>&nbsp;&nbsp;└── <span class="f">404.html</span> &nbsp;&nbsp;&nbsp;<span class="c">← freundliche Fehlerseite</span></div>
+    </div>
+    <p>Speichere alle drei Dateien an einem Ort auf deinem Computer, den du leicht findest (z.B. Desktop).</p>
+  </div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot g">4</div>
+      <h3>Dateien in GitHub hochladen</h3>
+    </div>
+    <p>In deinem neuen Repository siehst du mittig den Text <em>„Add file"</em>. Klicke darauf → <strong>„Upload files"</strong>.</p>
+    <p>Ziehe jetzt die drei Dateien (<strong>index.html</strong>, <strong>README.md</strong>, <strong>404.html</strong>) in das Upload-Fenster – oder klicke auf <strong>„choose your files"</strong>.</p>
+    <div class="mock">
+      <div class="mock-bar">
+        <div class="mock-dot" style="background:#FF5F57"></div>
+        <div class="mock-dot" style="background:#FFBD2E"></div>
+        <div class="mock-dot" style="background:#28CA41"></div>
+        <span style="margin-left:8px;font-family:system-ui;font-size:.75rem;color:#64748B">github.com · Upload files</span>
+      </div>
+      <div style="font-family:system-ui;font-size:.82rem;padding:8px 0">
+        <div style="border:2px dashed #CBD5E1;border-radius:10px;padding:20px;text-align:center;color:#64748B;margin-bottom:12px">
+          📂 Drag files here to add them to your repository<br>
+          <span style="font-size:.75rem">or <u style="color:#3B82F6">choose your files</u></span>
+        </div>
+        <div style="background:#F0FFF4;border:1px solid #86EFAC;border-radius:6px;padding:8px 12px;font-size:.78rem;color:#14532D">
+          ✅ index.html (110 KB)<br>
+          ✅ README.md (1 KB)<br>
+          ✅ 404.html (1 KB)
+        </div>
+      </div>
+    </div>
+    <p>Scrolle nach unten zu <strong>„Commit changes"</strong> und klicke auf den grünen Button <strong>„Commit changes"</strong>. Die Nachricht <em>„Add files via upload"</em> kannst du so lassen.</p>
+    <div class="success"><span class="si">✅</span><span>Die 3 Dateien sind jetzt in deinem Repository. Du siehst sie in der Übersicht.</span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot g">5</div>
+      <h3>GitHub Actions Workflow hochladen (einmalig)</h3>
+    </div>
+    <p>Für die automatische Veröffentlichung brauchen wir noch eine Workflow-Datei. Gehe so vor:</p>
+    <div class="checklist">
+      <div class="check-item"><span class="ck">1️⃣</span><div>Klicke in deinem Repository auf <strong>„Add file"</strong> → <strong>„Create new file"</strong></div></div>
+      <div class="check-item"><span class="ck">2️⃣</span><div>Gib als Dateiname exakt ein: <span class="path">.github/workflows/deploy.yml</span><br><small style="color:#64748B">(GitHub erstellt die Ordner automatisch)</small></div></div>
+      <div class="check-item"><span class="ck">3️⃣</span><div>Öffne die Datei <span class="path">deploy.yml</span> aus dem ZIP-Ordner mit dem Editor und kopiere den gesamten Inhalt in das große Textfeld</div></div>
+      <div class="check-item"><span class="ck">4️⃣</span><div>Klicke auf <strong>„Commit changes"</strong> → <strong>„Commit changes"</strong> (grüner Button)</div></div>
+    </div>
+    <div class="tip"><span class="ti">💡</span><span>Alternativ: Im ZIP-Ordner ist der gesamte <span class="path">.github</span>-Ordner bereits enthalten. Du kannst ihn einfach mit hochladen, wenn du <strong>alle Dateien auf einmal</strong> per Upload hinzufügst (auch versteckte Ordner).</span></div>
+  </div>
+
+  <!-- ═══ PHASE 3 ═══ -->
+  <div class="phase" style="margin-top:30px">
+    <div class="ph-num purple">3</div>
+    <h2>GitHub Pages aktivieren &amp; Link teilen</h2>
+  </div>
+  <div class="phase-div purple"></div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot p">6</div>
+      <h3>GitHub Pages in den Repository-Einstellungen aktivieren</h3>
+    </div>
+    <p>Klicke in deinem Repository oben auf <strong>„Settings"</strong> (Zahnrad-Icon). Scrolle in der linken Seitenleiste nach unten zu <strong>„Pages"</strong>.</p>
+    <div class="mock">
+      <div class="mock-bar">
+        <div class="mock-dot" style="background:#FF5F57"></div>
+        <div class="mock-dot" style="background:#FFBD2E"></div>
+        <div class="mock-dot" style="background:#28CA41"></div>
+        <span style="margin-left:8px;font-family:system-ui;font-size:.75rem;color:#64748B">Settings → Pages</span>
+      </div>
+      <div style="font-family:system-ui;font-size:.82rem;padding:8px 0">
+        <div style="margin-bottom:10px"><strong style="font-size:.8rem">Build and deployment</strong></div>
+        <div style="margin-bottom:8px;font-size:.8rem;color:#475569">Source</div>
+        <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:8px 12px;font-size:.8rem;display:flex;align-items:center;gap:8px">
+          <span style="background:#3B82F6;color:white;border-radius:4px;padding:2px 8px;font-size:.72rem;font-weight:700">✓</span>
+          <strong>GitHub Actions</strong> &nbsp;<span style="color:#64748B">(empfohlen)</span>
+        </div>
+      </div>
+    </div>
+    <p>Unter <strong>„Source"</strong> wähle <strong>„GitHub Actions"</strong>. Das war's! GitHub startet automatisch die erste Veröffentlichung.</p>
+    <div class="success"><span class="si">🚀</span><span>Der erste Build läuft jetzt – das dauert <strong>ca. 1–3 Minuten</strong>. Du siehst den Status unter dem Reiter <strong>„Actions"</strong> in deinem Repository.</span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot p">7</div>
+      <h3>Deine Website-URL finden und testen</h3>
+    </div>
+    <p>Sobald der grüne Haken unter <strong>„Actions"</strong> erscheint, ist die Website live. Die URL lautet immer nach diesem Schema:</p>
+
+    <div class="url-result">
+      <p>Deine Website-Adresse</p>
+      <div class="url"><span>https://</span>DEIN-USERNAME<span>.github.io/</span>kita-lernprinzipien</div>
+      <small>Ersetze DEIN-USERNAME durch deinen GitHub-Benutzernamen</small>
+    </div>
+
+    <p>Du findest die genaue URL auch unter <strong>Settings → Pages</strong> – dort wird sie nach dem ersten Deployment angezeigt.</p>
+    <div class="tip"><span class="ti">💡</span><span>Öffne die URL in deinem Browser und teste, ob alles funktioniert. Drücke <strong>F5</strong> wenn die Seite noch nicht lädt – manchmal braucht es eine Minute.</span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot p">8</div>
+      <h3>Link mit deinen Schülerinnen teilen</h3>
+    </div>
+    <p>Den Link kannst du auf verschiedene Arten teilen:</p>
+    <div class="checklist">
+      <div class="check-item"><span class="ck">💬</span><div><strong>Microsoft Teams:</strong> Link direkt in den Kurs-Chat posten (PuM-Kanal)</div></div>
+      <div class="check-item"><span class="ck">📋</span><div><strong>Arbeitsauftrag:</strong> URL auf dem gedruckten Arbeitsauftrag ergänzen</div></div>
+      <div class="check-item"><span class="ck">🖥️</span><div><strong>Beamer:</strong> Link auf dem Beamer anzeigen – Schülerinnen öffnen ihn selbst</div></div>
+      <div class="check-item"><span class="ck">📱</span><div><strong>QR-Code:</strong> Aus der URL einen QR-Code erstellen (kostenlos auf qr-code-generator.com) und ausdrucken</div></div>
+    </div>
+    <div class="success"><span class="si">🎉</span><span>Die Website ist jetzt dauerhaft online – kostenlos, ohne Server, weltweit erreichbar. Jede Schülerin kann den Kurs auf ihrem Laptop, Tablet oder Handy öffnen.</span></div>
+  </div>
+
+  <!-- UPDATE -->
+  <div class="phase" style="margin-top:30px">
+    <div class="ph-num blue" style="background:#0EA5E9">↺</div>
+    <h2>Kurs später aktualisieren</h2>
+  </div>
+  <div class="phase-div" style="background:linear-gradient(to right,#0EA5E9,transparent)"></div>
+
+  <div class="step">
+    <div class="step-hd">
+      <div class="step-dot" style="background:#0EA5E9">→</div>
+      <h3>So spielst du eine neue Version ein</h3>
+    </div>
+    <p>Wenn du eine neue Version des Kurses hast, musst du einfach die <span class="path">index.html</span> in GitHub ersetzen:</p>
+    <div class="checklist">
+      <div class="check-item"><span class="ck">1️⃣</span><div>Gehe in dein Repository auf <strong>github.com</strong></div></div>
+      <div class="check-item"><span class="ck">2️⃣</span><div>Klicke auf die Datei <strong>index.html</strong></div></div>
+      <div class="check-item"><span class="ck">3️⃣</span><div>Klicke auf das <strong>Stift-Symbol ✏️</strong> oben rechts → <strong>„Upload file"</strong></div></div>
+      <div class="check-item"><span class="ck">4️⃣</span><div>Lade die neue <span class="path">index.html</span> hoch und bestätige mit <strong>„Commit changes"</strong></div></div>
+      <div class="check-item"><span class="ck">5️⃣</span><div>GitHub veröffentlicht automatisch die neue Version – nach ca. 1–2 Minuten ist sie live</div></div>
+    </div>
+    <div class="tip"><span class="ti">💡</span><span>Der Link bleibt immer gleich. Du musst ihn nicht neu teilen – die Schülerinnen rufen denselben Link auf und sehen automatisch die neue Version.</span></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="phase" style="margin-top:30px">
+    <div class="ph-num" style="background:#64748B">?</div>
+    <h2>Häufige Fragen</h2>
+  </div>
+  <div class="phase-div" style="background:linear-gradient(to right,#64748B,transparent)"></div>
+
+  <div class="faq"><div class="faq-q">💰 Kostet das wirklich nichts?</div><div class="faq-a">Ja, GitHub Pages ist für öffentliche Repositories komplett kostenlos – ohne Kreditkarte, ohne Ablaufdatum. GitHub finanziert das als Dienst für die Entwickler-Community.</div></div>
+  <div class="faq"><div class="faq-q">🔒 Können meine Schülerinnen die Quelldatei sehen?</div><div class="faq-a">Ja – das Repository ist öffentlich, d.h. die index.html-Datei ist für alle einsehbar. Das ist bei reinen Lernmaterialien ohne sensible Daten kein Problem. Wenn du die Quelle verbergen möchtest, benötigst du GitHub Pro (kostenpflichtig) für private Repositories mit Pages.</div></div>
+  <div class="faq"><div class="faq-q">📱 Funktioniert die Website auf Smartphones?</div><div class="faq-a">Ja – der Kurs ist vollständig mobiloptimiert und funktioniert auf iPhones, Android-Geräten, Tablets, Laptops und Desktop-PCs.</div></div>
+  <div class="faq"><div class="faq-q">🌐 Brauchen die Schülerinnen einen Account?</div><div class="faq-a">Nein! Die Website ist öffentlich zugänglich. Die Schülerinnen öffnen einfach den Link im Browser – kein Login, kein Account nötig.</div></div>
+  <div class="faq"><div class="faq-q">🔗 Kann ich eine eigene Domain nutzen? (z.B. kurs.bfs-eichstaett.de)</div><div class="faq-a">Ja! Unter Settings → Pages → Custom domain kannst du eine eigene Domain eintragen. Die Domain selbst muss separat registriert werden (ca. 10–15 € / Jahr). Für den Schulgebrauch reicht aber die github.io-Adresse vollkommen aus.</div></div>
+  <div class="faq"><div class="faq-q">❓ Was, wenn der Link nicht funktioniert?</div><div class="faq-a">Prüfe: (1) Ist das Repository öffentlich? (2) Ist GitHub Pages unter Settings aktiviert? (3) Hat der GitHub Actions-Workflow erfolgreich abgeschlossen (grüner Haken unter „Actions")? (4) Stimmt die URL (Benutzername korrekt geschrieben)?</div></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>BFS Kinderpflege Eichstätt</strong> · Lernprinzipien-Kurs · GitHub Pages Setup-Anleitung<br>
+    Erstellt mit Claude · Kostenlose Veröffentlichung via GitHub Pages
+  </div>
+
+</div>
+</body>
+</html>

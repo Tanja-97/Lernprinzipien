@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lernprinzipien – Selbstlernkurs | BFS Kinderpflege</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:wght@300;400;600&display=swap');
+:root{
+  --p:#2563EB;--pl:#EFF6FF;--p2:#1D4ED8;
+  --g:#16A34A;--gl:#DCFCE7;
+  --r:#DC2626;--rl:#FEE2E2;
+  --o:#D97706;--ol:#FEF3C7;
+  --pu:#7C3AED;--pul:#EDE9FE;
+  --t:#111827;--ts:#6B7280;--tb:#F9FAFB;
+  --card:#fff;--brd:#E5E7EB;
+  --sh:0 2px 12px rgba(0,0,0,.08);
+  --sh2:0 6px 24px rgba(0,0,0,.12);
+  --r8:8px;--r12:12px;--r16:16px;--r20:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Serif 4',Georgia,serif;background:#F1F5F9;color:var(--t);font-size:16px;line-height:1.65}
+/* NAV */
+.topnav{background:var(--p);color:#fff;padding:0 20px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(37,99,235,.35)}
+.topnav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px;gap:16px}
+.logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;white-space:nowrap}
+.logo span{opacity:.7;font-weight:600;font-size:.8rem;display:block;margin-top:-2px}
+.prog-wrap{flex:1;max-width:200px}
+.prog-label{font-size:.7rem;opacity:.75;margin-bottom:3px;font-family:'Nunito',sans-serif}
+.prog-bar-bg{background:rgba(255,255,255,.25);border-radius:4px;height:7px;overflow:hidden}
+.prog-bar{background:#fff;height:100%;border-radius:4px;transition:width .6s ease;width:0}
+/* CHAPTER NAV */
+.chapnav{background:#fff;border-bottom:1.5px solid var(--brd);position:sticky;top:54px;z-index:150;overflow-x:auto}
+.chapnav-inner{max-width:960px;margin:0 auto;display:flex;gap:0}
+.cn-btn{padding:12px 16px;border:none;background:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--ts);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:6px}
+.cn-btn:hover{color:var(--p);background:var(--pl)}
+.cn-btn.active{color:var(--p);border-bottom-color:var(--p);background:var(--pl)}
+.cn-btn.done{color:var(--g)}
+.cn-btn .cn-icon{font-size:1rem}
+.cn-btn .cn-check{color:var(--g);font-size:.9rem}
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:28px 16px 80px}
+.section{display:none}
+.section.active{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* CARDS */
+.card{background:var(--card);border-radius:var(--r16);box-shadow:var(--sh);padding:28px 28px;margin-bottom:20px}
+.card-sm{padding:20px 22px}
+@media(max-width:600px){.card{padding:18px 16px}}
+/* HERO CARDS */
+.hero{border-radius:var(--r20);padding:36px 32px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.85rem;color:#fff;margin-bottom:6px;line-height:1.2}
+.hero p{color:rgba(255,255,255,.88);margin:0}
+.hero .htag{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:.78rem;font-family:'Nunito',sans-serif;font-weight:700;margin-bottom:14px;color:#fff}
+.hero-blue{background:linear-gradient(135deg,#2563EB 0%,#1E40AF 100%)}
+.hero-green{background:linear-gradient(135deg,#16A34A 0%,#166534 100%)}
+.hero-orange{background:linear-gradient(135deg,#D97706 0%,#B45309 100%)}
+.hero-purple{background:linear-gradient(135deg,#7C3AED 0%,#5B21B6 100%)}
+.hero-teal{background:linear-gradient(135deg,#0D9488 0%,#0F766E 100%)}
+.hero-rose{background:linear-gradient(135deg,#E11D48 0%,#BE123C 100%)}
+.hero::after{content:attr(data-emoji);position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.15;pointer-events:none}
+/* TYPOGRAPHY */
+h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.6rem;margin-bottom:8px}
+h2{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:10px}
+h3{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;margin-bottom:8px}
+p{color:var(--ts);margin-bottom:10px;line-height:1.7}
+p:last-child{margin-bottom:0}
+.big-text{font-size:1.05rem;color:var(--t)}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem}
+.badge-blue{background:var(--pl);color:var(--p)}
+.badge-green{background:var(--gl);color:var(--g)}
+.badge-orange{background:var(--ol);color:var(--o)}
+.badge-red{background:var(--rl);color:var(--r)}
+.badge-purple{background:var(--pul);color:var(--pu)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+/* CALLOUT BOXES */
+.box{border-radius:var(--r12);padding:16px 20px;margin:14px 0}
+.box-info{background:var(--pl);border-left:4px solid var(--p)}
+.box-info p,.box-info strong{color:#1E3A8A}
+.box-success{background:var(--gl);border-left:4px solid var(--g)}
+.box-success p,.box-success strong{color:#14532D}
+.box-warn{background:var(--ol);border-left:4px solid var(--o)}
+.box-warn p,.box-warn strong{color:#78350F}
+.box-danger{background:var(--rl);border-left:4px solid var(--r)}
+.box-danger p,.box-danger strong{color:#7F1D1D}
+.box-purple{background:var(--pul);border-left:4px solid var(--pu)}
+.box-purple p,.box-purple strong{color:#3B0764}
+.box label{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:5px;opacity:.7}
+.merksatz{background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #F59E0B;border-radius:var(--r12);padding:18px 22px;margin:16px 0;display:flex;gap:14px;align-items:flex-start}
+.merksatz .mi{font-size:1.7rem;flex-shrink:0;margin-top:2px}
+.merksatz p{color:#78350F;font-weight:600;margin:0;font-size:.95rem}
+/* DIVIDER */
+.div{height:1px;background:var(--brd);margin:22px 0;border-radius:1px}
+/* QUIZ */
+.qblock{margin:16px 0}
+.qblock .qtitle{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--t);margin-bottom:12px;padding:12px 16px;background:var(--tb);border-radius:var(--r8);border-left:4px solid var(--p)}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.opt{background:var(--tb);border:2px solid var(--brd);border-radius:var(--r8);padding:12px 16px;cursor:pointer;font-size:.92rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:10px;color:var(--t)}
+.opt:hover{border-color:var(--p);background:var(--pl);color:var(--p)}
+.opt.correct{border-color:var(--g)!important;background:var(--gl)!important;color:#14532D!important}
+.opt.wrong{border-color:var(--r)!important;background:var(--rl)!important;color:#7F1D1D!important}
+.opt.dis{cursor:default;pointer-events:none}
+.opt .ol{width:26px;height:26px;border-radius:50%;background:var(--brd);font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.opt:hover .ol{background:var(--p);color:#fff}
+.opt.correct .ol{background:var(--g);color:#fff}
+.opt.wrong .ol{background:var(--r);color:#fff}
+.qfb{border-radius:var(--r8);padding:12px 16px;margin-top:10px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;display:none}
+.qfb.show{display:block;animation:fadeUp .25s ease}
+.qfb.ok{background:var(--gl);color:#14532D;border:1.5px solid var(--g)}
+.qfb.no{background:var(--rl);color:#7F1D1D;border:1.5px solid var(--r)}
+.qfb.inf{background:var(--pl);color:#1E3A8A;border:1.5px solid #93C5FD}
+/* DRAG & DROP */
+.dnd-bag{background:var(--tb);border-radius:var(--r12);padding:16px;margin-bottom:14px;border:2px dashed var(--brd)}
+.dnd-bag h4{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--ts);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.dnd-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+@media(max-width:560px){.dnd-grid{grid-template-columns:1fr}}
+.dnd-zone{background:var(--tb);border:2.5px dashed var(--brd);border-radius:var(--r12);padding:14px;min-height:110px;transition:all .2s}
+.dnd-zone h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;color:var(--ts);margin-bottom:8px}
+.dnd-zone.over{border-color:var(--p);background:var(--pl)}
+.dnd-zone.ok-zone{border-color:var(--g);background:var(--gl)}
+.dnd-zone.no-zone{border-color:var(--r);background:var(--rl)}
+.chip{display:inline-flex;align-items:center;background:#fff;border:2px solid var(--brd);border-radius:8px;padding:6px 13px;margin:3px;cursor:grab;font-size:.85rem;font-weight:600;color:var(--t);transition:all .2s;user-select:none;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.chip:hover{border-color:var(--p);color:var(--p);transform:translateY(-2px)}
+.chip:active{cursor:grabbing}
+.chip.drag-active{opacity:.3}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:var(--r8);border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--p);color:#fff;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.btn-primary:hover{background:var(--p2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,99,235,.4)}
+.btn-success{background:var(--g);color:#fff;box-shadow:0 4px 14px rgba(22,163,74,.3)}
+.btn-success:hover{background:#15803D;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--p);border:2.5px solid var(--p)}
+.btn-outline:hover{background:var(--pl);transform:translateY(-1px)}
+.btn-warn{background:var(--o);color:#fff;box-shadow:0 4px 14px rgba(217,119,6,.3)}
+.btn-warn:hover{background:#B45309}
+.btn-sm{padding:8px 18px;font-size:.82rem}
+.btn-xs{padding:6px 13px;font-size:.78rem}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+/* MATCHING */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media(max-width:480px){.match-grid{grid-template-columns:1fr}}
+.match-card{background:var(--tb);border:2.5px solid var(--brd);border-radius:var(--r8);padding:13px;cursor:pointer;text-align:center;font-size:.88rem;font-weight:600;transition:all .2s;color:var(--t)}
+.match-card:hover{border-color:var(--p);background:var(--pl);color:var(--p)}
+.match-card.sel{border-color:var(--p);background:var(--p);color:#fff}
+.match-card.hit{border-color:var(--g)!important;background:var(--gl)!important;color:#14532D!important;cursor:default;pointer-events:none}
+.match-card.miss{border-color:var(--r);background:var(--rl);color:var(--r)}
+/* FILL IN */
+.fill-q{margin:10px 0}
+.fill-q label{font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--t);display:block;margin-bottom:6px}
+.fill-q input,.fill-q textarea,.fill-q select{width:100%;border:2px solid var(--brd);border-radius:var(--r8);padding:10px 14px;font-family:'Source Serif 4',serif;font-size:.92rem;color:var(--t);background:var(--tb);transition:border-color .2s;resize:vertical}
+.fill-q input:focus,.fill-q textarea:focus,.fill-q select:focus{outline:none;border-color:var(--p);background:#fff}
+.fill-q textarea{min-height:80px}
+/* STATIONS */
+.sta-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.sta-btn{padding:7px 16px;border:2.5px solid var(--brd);border-radius:20px;background:var(--tb);font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;color:var(--ts);cursor:pointer;transition:all .2s}
+.sta-btn.active{background:var(--p);border-color:var(--p);color:#fff}
+.sta-btn.done{background:var(--g);border-color:var(--g);color:#fff}
+.sta-btn:hover:not(.active):not(.done){border-color:var(--p);color:var(--p)}
+.sta-body{display:none}
+.sta-body.show{display:block;animation:fadeUp .3s ease}
+/* SITUATION */
+.situation{background:#F8F9FA;border-radius:var(--r12);padding:20px 22px;margin:14px 0;border:1.5px solid var(--brd);font-size:.95rem;line-height:1.75;position:relative}
+.situation::before{content:'"';position:absolute;top:-6px;left:14px;font-size:4rem;color:var(--p);opacity:.12;font-family:Georgia,serif;line-height:1}
+/* HINT */
+.hint-btn{background:transparent;border:2px solid var(--o);color:var(--o);border-radius:var(--r8);padding:7px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;margin-bottom:10px}
+.hint-btn:hover{background:var(--ol)}
+.hintbox{background:var(--ol);border-radius:var(--r8);padding:13px 16px;font-size:.88rem;color:#78350F;display:none;margin-bottom:10px;border:1.5px solid #FCD34D}
+.hintbox.show{display:block;animation:fadeUp .2s ease}
+/* ANALYSIS Qs */
+.aq-list{display:flex;flex-direction:column;gap:12px;margin:14px 0}
+.aq{display:flex;gap:12px;align-items:flex-start;background:var(--tb);border-radius:var(--r8);padding:13px}
+.aq-num{background:var(--p);color:#fff;width:28px;height:28px;border-radius:50%;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.aq label{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;display:block;margin-bottom:6px;color:var(--t)}
+.aq textarea{width:100%;border:1.5px solid var(--brd);border-radius:var(--r8);padding:9px;font-size:.88rem;font-family:'Source Serif 4',serif;resize:vertical;min-height:65px;background:#fff;color:var(--t)}
+.aq textarea:focus{outline:none;border-color:var(--p)}
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--tb);border-radius:var(--r8);padding:13px}
+.step-n{background:var(--p);color:#fff;width:30px;height:30px;border-radius:50%;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-t strong{font-family:'Nunito',sans-serif;font-weight:700;display:block;margin-bottom:3px;color:var(--t)}
+.step-t p{font-size:.86rem;margin:0}
+/* PRINCIPLE TABS */
+.ptabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.ptab{padding:8px 18px;border:2.5px solid var(--brd);border-radius:20px;background:var(--tb);font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;color:var(--ts);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.ptab:hover{border-color:var(--p);color:var(--p)}
+.ptab.active{background:var(--p);border-color:var(--p);color:#fff}
+.ptab.done{border-color:var(--g);background:var(--gl);color:#14532D}
+.ptab.done.active{background:var(--p);border-color:var(--p);color:#fff}
+.pbody{display:none}
+.pbody.show{display:block;animation:fadeUp .3s ease}
+/* CHECKBOXES */
+.cbox-group{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.cbox-item{display:flex;align-items:center;gap:7px;background:var(--tb);border:2px solid var(--brd);border-radius:var(--r8);padding:8px 14px;cursor:pointer;font-size:.88rem;font-weight:600;transition:all .2s;color:var(--t)}
+.cbox-item.on{border-color:var(--p);background:var(--pl);color:var(--p)}
+.cbox-item input{display:none}
+/* KANN LISTE */
+.kann{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.kann-item{display:flex;align-items:center;gap:14px;background:var(--tb);border:2px solid var(--brd);border-radius:var(--r8);padding:14px 16px;cursor:pointer;transition:all .25s;font-weight:600;font-size:.92rem}
+.kann-item.on{background:var(--gl);border-color:var(--g);color:#14532D}
+.kann-chk{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .25s}
+.kann-item.on .kann-chk{background:var(--g);border-color:var(--g);color:#fff}
+/* GRID LAYOUTS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:640px){.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.grid3{grid-template-columns:1fr}}
+/* ICON CARD */
+.ic{background:var(--tb);border-radius:var(--r12);padding:18px 16px;text-align:center;border:2px solid var(--brd);transition:all .25s}
+.ic:hover{border-color:var(--p);transform:translateY(-3px);box-shadow:var(--sh2)}
+.ic .ic-icon{font-size:2.2rem;margin-bottom:10px}
+.ic h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--t);margin-bottom:5px}
+.ic p{font-size:.8rem;color:var(--ts);margin:0}
+/* SCORE */
+.score-box{text-align:center;padding:22px;background:var(--pl);border-radius:var(--r12);margin-top:14px;display:none}
+.score-box.show{display:block;animation:fadeUp .3s ease}
+.score-big{font-family:'Nunito',sans-serif;font-weight:900;font-size:3rem;color:var(--p)}
+.score-label{font-size:.88rem;color:var(--ts);margin-top:4px}
+/* ACCORDION */
+.acc{margin:10px 0}
+.acc-hd{background:var(--tb);border:1.5px solid var(--brd);border-radius:var(--r8);padding:13px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:'Nunito',sans-serif;font-weight:700;font-size:.92rem;color:var(--t);transition:all .2s}
+.acc-hd:hover{background:var(--pl);border-color:var(--p);color:var(--p)}
+.acc-hd .arrow{transition:transform .25s;font-size:.9rem}
+.acc-hd.open{background:var(--pl);border-color:var(--p);color:var(--p);border-radius:var(--r8) var(--r8) 0 0}
+.acc-hd.open .arrow{transform:rotate(180deg)}
+.acc-bd{display:none;border:1.5px solid var(--p);border-top:none;border-radius:0 0 var(--r8) var(--r8);padding:16px;background:#fff}
+.acc-bd.show{display:block}
+/* TABLE */
+.tbl-wrap{overflow-x:auto;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:var(--p);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;padding:10px 14px;text-align:left}
+td{padding:10px 14px;border-bottom:1px solid var(--brd);color:var(--t)}
+tr:nth-child(even) td{background:var(--tb)}
+tr:hover td{background:var(--pl)}
+/* TIMER */
+.timer-box{display:flex;align-items:center;gap:8px;background:var(--tb);border-radius:var(--r8);padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--ts);border:1.5px solid var(--brd);margin-bottom:14px}
+/* FINAL */
+.final{border-radius:var(--r20);padding:40px 32px;text-align:center;background:linear-gradient(135deg,#16A34A,#166534);color:#fff;margin-bottom:20px}
+.final h1{color:#fff;font-size:2rem}
+.final p{color:rgba(255,255,255,.88);font-size:1.05rem}
+.final .trophy{font-size:4rem;margin-bottom:14px}
+/* TOOLTIP */
+.tt{position:relative;display:inline-block;cursor:help}
+.tt::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:.72rem;border-radius:5px;padding:5px 10px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s;z-index:99}
+.tt:hover::after{opacity:1}
+/* STICKY SIDEBAR TIMER */
+.progress-dots{display:flex;align-items:center;gap:5px}
+.pdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s}
+.pdot.done{background:#fff}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="logo">🌱 Lernprinzipien<span>BFS Kinderpflege · Selbstlernkurs</span></div>
+    <div class="prog-wrap">
+      <div class="prog-label">Gesamtfortschritt</div>
+      <div class="prog-bar-bg"><div class="prog-bar" id="gp"></div></div>
+    </div>
+  </div>
+</nav>
+
+<!-- CHAPTER NAV -->
+<nav class="chapnav">
+  <div class="chapnav-inner">
+    <button class="cn-btn active" onclick="goCh(1)" id="cnb1"><span class="cn-icon">🏫</span> Einstieg</button>
+    <button class="cn-btn" onclick="goCh(2)" id="cnb2"><span class="cn-icon">🧠</span> Vorwissen</button>
+    <button class="cn-btn" onclick="goCh(3)" id="cnb3"><span class="cn-icon">📖</span> Lernprinzipien</button>
+    <button class="cn-btn" onclick="goCh(4)" id="cnb4"><span class="cn-icon">🔍</span> Analysen-Lauf</button>
+    <button class="cn-btn" onclick="goCh(5)" id="cnb5"><span class="cn-icon">✏️</span> Transfer</button>
+    <button class="cn-btn" onclick="goCh(6)" id="cnb6"><span class="cn-icon">🪞</span> Reflexion</button>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ═══════════════════ KAPITEL 1 ═══════════════════ -->
+<div class="section active" id="s1">
+
+  <div class="hero hero-blue" data-emoji="🏫">
+    <div class="htag">⏰ Kapitel 1 · ca. 15 Minuten</div>
+    <h1>Was macht ein gutes Angebot aus?</h1>
+    <p>Willkommen! In diesem Kurs erarbeitest du alle wichtigen Lernprinzipien für die Arbeit in der Kita – Schritt für Schritt. Viel Erfolg!</p>
+  </div>
+
+  <!-- 1.1 EINSTIEG -->
+  <div class="card">
+    <span class="badge badge-blue">1.1 Einstieg</span>
+    <h2 style="margin-top:10px">Stell dir vor...</h2>
+    <div class="situation">
+      <strong>Situation:</strong> Lisa ist Kinderpflegerin im 1. Ausbildungsjahr. Sie soll heute mit einer Gruppe von 4-Jährigen ein Angebot zum Thema „Farben" durchführen. Sie legt bunte Farbkarten auf den Tisch und beginnt, den Kindern die Farben zu <em>erklären</em>. Nach 5 Minuten werden die Kinder unruhig, fangen an zu quatschen, einige laufen weg.
+    </div>
+    <div class="qblock">
+      <div class="qtitle">🤔 Denk nach: Was ist hier schiefgelaufen?</div>
+      <div class="opts" id="q1a">
+        <div class="opt" onclick="ans('q1a',0,false,'q1a-fb')"><div class="ol">A</div> Das Thema war zu schwer für 4-Jährige.</div>
+        <div class="opt" onclick="ans('q1a',1,false,'q1a-fb')"><div class="ol">B</div> Die Farben waren nicht bunt genug.</div>
+        <div class="opt" onclick="ans('q1a',2,true,'q1a-fb')"><div class="ol">C</div> Die Kinder waren zu passiv – nur Erklären reicht nicht.</div>
+        <div class="opt" onclick="ans('q1a',3,false,'q1a-fb')"><div class="ol">D</div> Lisa war zu unerfahren als Fachkraft.</div>
+      </div>
+      <div class="qfb" id="q1a-fb"></div>
+    </div>
+  </div>
+
+  <!-- 1.2 DRAG & DROP -->
+  <div class="card">
+    <span class="badge badge-blue">1.2 Drag & Drop – Kartenabfrage</span>
+    <h2 style="margin-top:10px">Was gehört zu einem guten Angebot?</h2>
+    <p>Ziehe die Begriffe in die richtige Spalte! (Auf dem Handy: Tippe einen Begriff an, dann tippe auf die Zielzone.)</p>
+
+    <div class="dnd-bag">
+      <h4>🔡 Begriffe zum Sortieren</h4>
+      <div id="bag1">
+        <span class="chip" draggable="true" data-v="aktiv" ondragstart="ds(event)">👆 Kinder aktiv einbeziehen</span>
+        <span class="chip" draggable="true" data-v="erkl" ondragstart="ds(event)">💬 Nur erklären</span>
+        <span class="chip" draggable="true" data-v="wdh" ondragstart="ds(event)">🔄 Inhalte wiederholen</span>
+        <span class="chip" draggable="true" data-v="indiv" ondragstart="ds(event)">🎯 Auf jedes Kind eingehen</span>
+        <span class="chip" draggable="true" data-v="gleich" ondragstart="ds(event)">📋 Gleiche Aufgabe für alle</span>
+        <span class="chip" draggable="true" data-v="schr" ondragstart="ds(event)">🪜 Kleine Schritte</span>
+        <span class="chip" draggable="true" data-v="mat" ondragstart="ds(event)">🎨 Abwechs. Materialien</span>
+        <span class="chip" draggable="true" data-v="mono" ondragstart="ds(event)">😴 Immer gleiche Methode</span>
+      </div>
+    </div>
+
+    <div class="dnd-grid">
+      <div class="dnd-zone" id="z-gut" ondragover="dov(event)" ondrop="dp(event,'gut')">
+        <h4>✅ Gut für ein Angebot</h4>
+      </div>
+      <div class="dnd-zone" id="z-schlecht" ondragover="dov(event)" ondrop="dp(event,'schlecht')">
+        <h4>❌ Eher problematisch</h4>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="chkDnD1()">Auflösung anzeigen</button>
+    <div class="qfb" id="dnd1-fb"></div>
+  </div>
+
+  <!-- 1.3 LERNPRINZIPIEN EINFÜHRUNG -->
+  <div class="card">
+    <span class="badge badge-blue">1.3 Was sind Lernprinzipien?</span>
+    <h2 style="margin-top:10px">Definition & Überblick</h2>
+    <p class="big-text">Lernprinzipien sind grundlegende pädagogische Regeln, die beschreiben, <strong>wie Kinder am besten lernen</strong>. Sie helfen pädagogischen Fachkräften dabei, Angebote bewusst und kindgerecht zu gestalten.</p>
+
+    <div class="box box-info">
+      <label>📌 Merke</label>
+      <p>Lernprinzipien sagen uns: <strong>Wie muss ich ein Angebot gestalten, damit Kinder wirklich etwas lernen?</strong></p>
+    </div>
+
+    <h3 style="margin-top:16px">In diesem Kurs lernst du 7 Lernprinzipien kennen:</h3>
+    <div class="grid3" style="margin-top:12px">
+      <div class="ic"><div class="ic-icon">👆</div><h4>Aktivität</h4><p>Kinder handeln selbst</p></div>
+      <div class="ic"><div class="ic-icon">👀</div><h4>Anschauung</h4><p>Sehen & Erleben</p></div>
+      <div class="ic"><div class="ic-icon">🔄</div><h4>Wiederholung</h4><p>Mehrfach aufgreifen</p></div>
+      <div class="ic"><div class="ic-icon">✏️</div><h4>Übung</h4><p>Durch Üben festigen</p></div>
+      <div class="ic"><div class="ic-icon">🪜</div><h4>Teilschritte</h4><p>Schritt für Schritt</p></div>
+      <div class="ic"><div class="ic-icon">🎨</div><h4>Variabilität</h4><p>Abwechslung</p></div>
+      <div class="ic"><div class="ic-icon">🎯</div><h4>Individualisierung</h4><p>Auf jedes Kind eingehen</p></div>
+    </div>
+
+    <div class="qblock" style="margin-top:18px">
+      <div class="qtitle">Wie viele Lernprinzipien gibt es in diesem Kurs zu entdecken?</div>
+      <div class="opts" id="q1b">
+        <div class="opt" onclick="ans('q1b',0,false,'q1b-fb')"><div class="ol">A</div> 3</div>
+        <div class="opt" onclick="ans('q1b',1,false,'q1b-fb')"><div class="ol">B</div> 5</div>
+        <div class="opt" onclick="ans('q1b',2,true,'q1b-fb')"><div class="ol">C</div> 7</div>
+        <div class="opt" onclick="ans('q1b',3,false,'q1b-fb')"><div class="ol">D</div> 10</div>
+      </div>
+      <div class="qfb" id="q1b-fb"></div>
+    </div>
+
+    <div class="merksatz" style="margin-top:14px">
+      <span class="mi">⭐</span>
+      <p>„Gute pädagogische Angebote entstehen nicht zufällig – sie werden <strong>bewusst geplant</strong> und berücksichtigen, wie Kinder am besten lernen."</p>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-primary" onclick="nextCh()">Weiter zu Kapitel 2 →</button>
+    </div>
+  </div>
+
+</div><!-- /section 1 -->
+
+<!-- ═══════════════════ KAPITEL 2 ═══════════════════ -->
+<div class="section" id="s2">
+
+  <div class="hero hero-orange" data-emoji="🧠">
+    <div class="htag">⏰ Kapitel 2 · ca. 20 Minuten</div>
+    <h1>Vorwissen aktivieren</h1>
+    <p>Teste, was du schon über Lernprinzipien weißt! Wir starten mit Aktivität und Anschauung – diese kennt ihr bereits aus dem Unterricht.</p>
+  </div>
+
+  <!-- 2.1 Wiederholung Aktivität & Anschauung -->
+  <div class="card">
+    <span class="badge badge-orange">2.1 Rückblick: Aktivität & Anschauung</span>
+    <h2 style="margin-top:10px">Was ihr schon wisst</h2>
+
+    <div class="grid2" style="margin:14px 0">
+      <div class="box box-info">
+        <label>👆 Aktivität</label>
+        <p><strong>Kinder lernen besser, wenn sie selbst handeln.</strong> Sie probieren aus, machen mit, sind aktiv beteiligt. Reines Zuhören reicht nicht.</p>
+        <p style="margin-top:8px"><em>Beispiel: Kinder bauen selbst einen Turm aus Bauklötzen – anstatt nur zuzuschauen.</em></p>
+      </div>
+      <div class="box box-purple">
+        <label>👀 Anschauung</label>
+        <p><strong>Kinder lernen besser, wenn sie etwas sehen, anfassen oder erleben.</strong> Echte Gegenstände sind besser als abstrakte Erklärungen.</p>
+        <p style="margin-top:8px"><em>Beispiel: Einen echten Apfel mitbringen – nicht nur sagen „ein Apfel ist rot und rund".</em></p>
+      </div>
+    </div>
+
+    <div class="merksatz">
+      <span class="mi">💡</span>
+      <p>Merksatz: „Kinder lernen durch <strong>Tun und Sehen</strong>." – Aktivität und Anschauung sind die Grundpfeiler guten Lernens.</p>
+    </div>
+  </div>
+
+  <!-- 2.2 QUIZ Block -->
+  <div class="card">
+    <span class="badge badge-orange">2.2 Wissenstest – Multiple Choice</span>
+    <h2 style="margin-top:10px">Teste dein Wissen!</h2>
+    <p>Beantworte alle 5 Fragen. Du erhältst sofort Rückmeldung.</p>
+
+    <div class="qblock">
+      <div class="qtitle">Frage 1: Was bedeutet das Lernprinzip „Aktivität"?</div>
+      <div class="opts" id="q2a">
+        <div class="opt" onclick="ans('q2a',0,false,'q2a-fb')"><div class="ol">A</div> Kinder schauen einem Video zu.</div>
+        <div class="opt" onclick="ans('q2a',1,true,'q2a-fb')"><div class="ol">B</div> Kinder handeln selbst – sie probieren aus und sind aktiv beteiligt.</div>
+        <div class="opt" onclick="ans('q2a',2,false,'q2a-fb')"><div class="ol">C</div> Die Fachkraft erklärt sehr lebhaft und bewegt sich dabei.</div>
+        <div class="opt" onclick="ans('q2a',3,false,'q2a-fb')"><div class="ol">D</div> Kinder dürfen im Freien spielen.</div>
+      </div>
+      <div class="qfb" id="q2a-fb"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="qblock">
+      <div class="qtitle">Frage 2: Wofür steht das Lernprinzip „Anschauung"?</div>
+      <div class="opts" id="q2b">
+        <div class="opt" onclick="ans('q2b',0,false,'q2b-fb')"><div class="ol">A</div> Die Fachkraft erklärt möglichst anschaulich mit vielen Worten.</div>
+        <div class="opt" onclick="ans('q2b',1,false,'q2b-fb')"><div class="ol">B</div> Kinder lernen nur durch Zuhören.</div>
+        <div class="opt" onclick="ans('q2b',2,true,'q2b-fb')"><div class="ol">C</div> Kinder lernen besser, wenn sie etwas sehen, anfassen oder erleben können.</div>
+        <div class="opt" onclick="ans('q2b',3,false,'q2b-fb')"><div class="ol">D</div> Kinder schauen sich Bilder in Büchern an.</div>
+      </div>
+      <div class="qfb" id="q2b-fb"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="qblock">
+      <div class="qtitle">Frage 3: Eine Fachkraft erklärt 10 Minuten lang das Thema „Jahreszeiten" – kein Kind darf etwas sagen oder tun. Welches Prinzip fehlt?</div>
+      <div class="opts" id="q2c">
+        <div class="opt" onclick="ans('q2c',0,true,'q2c-fb')"><div class="ol">A</div> Aktivität – die Kinder sind rein passiv.</div>
+        <div class="opt" onclick="ans('q2c',1,false,'q2c-fb')"><div class="ol">B</div> Variabilität – es wurden keine verschiedenen Methoden genutzt.</div>
+        <div class="opt" onclick="ans('q2c',2,false,'q2c-fb')"><div class="ol">C</div> Wiederholung – das Thema wurde nur einmal erklärt.</div>
+        <div class="opt" onclick="ans('q2c',3,false,'q2c-fb')"><div class="ol">D</div> Individualisierung – alle bekamen dieselbe Erklärung.</div>
+      </div>
+      <div class="qfb" id="q2c-fb"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="qblock">
+      <div class="qtitle">Frage 4: Welches ist ein gutes Beispiel für Anschauung beim Thema „Obst"?</div>
+      <div class="opts" id="q2d">
+        <div class="opt" onclick="ans('q2d',0,false,'q2d-fb')"><div class="ol">A</div> Die Fachkraft beschreibt ausführlich, wie ein Apfel aussieht.</div>
+        <div class="opt" onclick="ans('q2d',1,false,'q2d-fb')"><div class="ol">B</div> Die Kinder füllen ein Arbeitsblatt mit Früchtenamen aus.</div>
+        <div class="opt" onclick="ans('q2d',2,true,'q2d-fb')"><div class="ol">C</div> Die Fachkraft bringt echte Früchte mit – die Kinder können sie anfassen, riechen, probieren.</div>
+        <div class="opt" onclick="ans('q2d',3,false,'q2d-fb')"><div class="ol">D</div> Die Fachkraft zeigt ein Poster mit Früchtezeichnungen.</div>
+      </div>
+      <div class="qfb" id="q2d-fb"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="qblock">
+      <div class="qtitle">Frage 5: Warum sind Aktivität und Anschauung besonders wichtig für Kinder im Vorschulalter?</div>
+      <div class="opts" id="q2e">
+        <div class="opt" onclick="ans('q2e',0,false,'q2e-fb')"><div class="ol">A</div> Weil Kinder in dem Alter nicht zuhören können.</div>
+        <div class="opt" onclick="ans('q2e',1,true,'q2e-fb')"><div class="ol">B</div> Weil Kinder in diesem Alter hauptsächlich konkret und handelnd denken – abstrakte Erklärungen überfordern sie.</div>
+        <div class="opt" onclick="ans('q2e',2,false,'q2e-fb')"><div class="ol">C</div> Weil die Fachkräfte dann weniger erklären müssen.</div>
+        <div class="opt" onclick="ans('q2e',3,false,'q2e-fb')"><div class="ol">D</div> Weil es im Lehrplan so vorgeschrieben ist.</div>
+      </div>
+      <div class="qfb" id="q2e-fb"></div>
+    </div>
+
+    <div class="score-box" id="sc2">
+      <div class="score-big" id="sc2-val">–</div>
+      <div class="score-label">von 5 Fragen richtig beantwortet</div>
+    </div>
+  </div>
+
+  <!-- 2.3 ZUORDNUNG -->
+  <div class="card">
+    <span class="badge badge-orange">2.3 Zuordnungsaufgabe</span>
+    <h2 style="margin-top:10px">Aktivität oder Anschauung?</h2>
+    <p>Ordne jede Situation dem richtigen Lernprinzip zu. Tippe auf eine Situation, dann auf das Lernprinzip!</p>
+
+    <div class="match-grid" id="match2">
+      <div class="match-card" data-g="sit" data-id="m2-1" onclick="matchClick(this)">Kinder formen Knete zu Tieren</div>
+      <div class="match-card" data-g="sit" data-id="m2-2" onclick="matchClick(this)">Die Fachkraft zeigt einen echten Frosch im Glas</div>
+      <div class="match-card" data-g="sit" data-id="m2-3" onclick="matchClick(this)">Kinder pflanzen selbst Samen ein</div>
+      <div class="match-card" data-g="sit" data-id="m2-4" onclick="matchClick(this)">Fachkraft schneidet einen Apfel auf – Kinder riechen daran</div>
+      <div class="match-card" data-g="sit" data-id="m2-5" onclick="matchClick(this)">Kinder bauen eine Brücke aus Holzklötzen</div>
+      <div class="match-card" data-g="sit" data-id="m2-6" onclick="matchClick(this)">Kinder betasten verschiedene Stoffe (weich, rau, glatt)</div>
+      <div class="match-card" data-g="prin" data-id="Aktivität" onclick="matchClick(this)" style="background:var(--pl);border-color:var(--p)">👆 Aktivität</div>
+      <div class="match-card" data-g="prin" data-id="Anschauung" onclick="matchClick(this)" style="background:var(--pul);border-color:var(--pu)">👀 Anschauung</div>
+    </div>
+    <div class="qfb" id="match2-fb"></div>
+
+    <div class="box box-info" style="margin-top:14px">
+      <label>💡 Hinweis</label>
+      <p><strong>Aktivität:</strong> Das Kind handelt selbst. <strong>Anschauung:</strong> Das Kind sieht, fühlt, riecht, schmeckt etwas.</p>
+    </div>
+  </div>
+
+  <!-- 2.4 DIDAKTIK vs METHODIK -->
+  <div class="card">
+    <span class="badge badge-orange">2.4 Bonusthema: Didaktik & Methodik</span>
+    <h2 style="margin-top:10px">WAS & WARUM vs. WIE</h2>
+    <p>Neben den Lernprinzipien braucht jedes Angebot auch klare didaktische und methodische Planung.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Didaktik</th><th>Methodik</th></tr>
+        <tr><td><strong>WAS</strong> möchte ich vermitteln?</td><td><strong>WIE</strong> gestalte ich das Angebot?</td></tr>
+        <tr><td><strong>WARUM</strong> ist das wichtig?</td><td>Welche Methoden und Materialien setze ich ein?</td></tr>
+        <tr><td>Ziel, Inhalt, Begründung</td><td>Durchführung, Ablauf, Material</td></tr>
+        <tr><td><em>„Ich möchte, dass Kinder Farben kennenlernen."</em></td><td><em>„Ich bringe bunte Tücher mit und lasse Kinder sortieren."</em></td></tr>
+      </table>
+    </div>
+
+    <div class="qblock" style="margin-top:16px">
+      <div class="qtitle">Was gehört zur Didaktik – was zur Methodik? Klicke die richtige Kategorie!</div>
+      <div id="didmeth-list" style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="flex:1;font-weight:600;font-size:.9rem">„Das Ziel ist, dass Kinder Zahlen bis 5 zählen können."</span>
+          <button class="btn btn-sm btn-outline" onclick="didMeth(this,'D')">Didaktik</button>
+          <button class="btn btn-sm btn-outline" onclick="didMeth(this,'M')">Methodik</button>
+          <span class="badge" id="dm1" style="display:none"></span>
+        </div>
+        <div class="div" style="margin:4px 0"></div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="flex:1;font-weight:600;font-size:.9rem">„Wir nutzen Würfel und Muggelsteine zum Zählen."</span>
+          <button class="btn btn-sm btn-outline" onclick="didMeth2(this,'D')">Didaktik</button>
+          <button class="btn btn-sm btn-outline" onclick="didMeth2(this,'M')">Methodik</button>
+          <span class="badge" id="dm2" style="display:none"></span>
+        </div>
+        <div class="div" style="margin:4px 0"></div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="flex:1;font-weight:600;font-size:.9rem">„Ich erkläre zuerst kurz, dann üben die Kinder selbst."</span>
+          <button class="btn btn-sm btn-outline" onclick="didMeth3(this,'D')">Didaktik</button>
+          <button class="btn btn-sm btn-outline" onclick="didMeth3(this,'M')">Methodik</button>
+          <span class="badge" id="dm3" style="display:none"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-primary" onclick="nextCh()">Weiter zu Kapitel 3 →</button>
+    </div>
+  </div>
+
+</div><!-- /section 2 -->
+
+<!-- ═══════════════════ KAPITEL 3 ═══════════════════ -->
+<div class="section" id="s3">
+
+  <div class="hero hero-purple" data-emoji="📖">
+    <div class="htag">⏰ Kapitel 3 · ca. 40 Minuten</div>
+    <h1>Die 5 neuen Lernprinzipien</h1>
+    <p>Erarbeite jedes Prinzip einzeln – mit Erklärung, Praxisbeispielen, Quiz und Merksatz. Klicke alle 5 durch!</p>
+  </div>
+
+  <div class="card">
+    <div class="ptabs">
+      <button class="ptab active" onclick="showP('wdh')" id="pt-wdh">🔄 Wiederholung</button>
+      <button class="ptab" onclick="showP('ue')" id="pt-ue">✏️ Übung</button>
+      <button class="ptab" onclick="showP('ts')" id="pt-ts">🪜 Teilschritte</button>
+      <button class="ptab" onclick="showP('var')" id="pt-var">🎨 Variabilität</button>
+      <button class="ptab" onclick="showP('ind')" id="pt-ind">🎯 Individualisierung</button>
+    </div>
+    <div id="p3-done-msg" style="display:none" class="box box-success"><label>✅ Geschafft!</label><p>Du hast alle 5 Lernprinzipien erarbeitet. Weiter zu Kapitel 4!</p></div>
+
+    <!-- WIEDERHOLUNG -->
+    <div class="pbody show" id="pb-wdh">
+      <div class="box box-warn">
+        <label>🤔 Einstiegs-Frage</label>
+        <p>Ein Kind übt das Schleifebinden <strong>einmal</strong>. Nächste Woche soll es das wieder können. Was glaubst du – wird es das noch können?</p>
+      </div>
+      <h2 style="margin-top:18px">🔄 Lernprinzip 1: Wiederholung</h2>
+      <p class="big-text">Kinder lernen nachhaltiger, wenn Inhalte <strong>mehrfach aufgegriffen</strong> werden. Das Gehirn speichert Informationen besser, wenn sie regelmäßig wiederholt werden.</p>
+
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel 1</label>
+        <p>Die Fachkraft wiederholt jeden Morgen beim Anziehen gemeinsam die Farben: „Welche Farbe hat deine Jacke?" – Nach 2 Wochen können alle Kinder die Farben sicher benennen.</p>
+      </div>
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel 2</label>
+        <p>Das Zahlenspiel zum Thema „Zählen bis 5" wird jeden Tag beim Aufräumen gespielt. Innerhalb eines Monats zählen die Kinder sicher mit.</p>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Was sagt die Hirnforschung über Wiederholung? Wähle die richtige Aussage:</div>
+        <div class="opts" id="q3a">
+          <div class="opt" onclick="ans('q3a',0,false,'q3a-fb')"><div class="ol">A</div> Kinder brauchen Wiederholung nicht, wenn sie beim ersten Mal gut aufpassen.</div>
+          <div class="opt" onclick="ans('q3a',1,true,'q3a-fb')"><div class="ol">B</div> Durch Wiederholung werden neuronale Verbindungen im Gehirn gefestigt – das macht Wissen dauerhaft abrufbar.</div>
+          <div class="opt" onclick="ans('q3a',2,false,'q3a-fb')"><div class="ol">C</div> Zu viel Wiederholung verwirrt Kinder.</div>
+          <div class="opt" onclick="ans('q3a',3,false,'q3a-fb')"><div class="ol">D</div> Wiederholung ist nur für ältere Kinder ab 5 Jahren wichtig.</div>
+        </div>
+        <div class="qfb" id="q3a-fb"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Welche Maßnahme setzt Wiederholung NICHT um?</div>
+        <div class="opts" id="q3b">
+          <div class="opt" onclick="ans('q3b',0,false,'q3b-fb')"><div class="ol">A</div> Jeden Morgen gemeinsam das Wochenlied singen.</div>
+          <div class="opt" onclick="ans('q3b',1,false,'q3b-fb')"><div class="ol">B</div> Beim Aufräumen täglich die Farben der Spielzeugkisten benennen lassen.</div>
+          <div class="opt" onclick="ans('q3b',2,true,'q3b-fb')"><div class="ol">C</div> Jeden Tag ein anderes, vollständig neues Thema einführen.</div>
+          <div class="opt" onclick="ans('q3b',3,false,'q3b-fb')"><div class="ol">D</div> Das Bilderbuch der Woche mehrfach vorlesen.</div>
+        </div>
+        <div class="qfb" id="q3b-fb"></div>
+      </div>
+
+      <div class="fill-q" style="margin:14px 0">
+        <label>✍️ Schreibe selbst: Wie könntest du das Thema „Tiere im Winter" in einer Kitagruppe wiederholt aufgreifen? (Mindestens 2 Ideen)</label>
+        <textarea placeholder="Beispiel: Beim Morgenkreis fragen, welche Tiere Winterschlaf halten..."></textarea>
+      </div>
+
+      <div class="merksatz">
+        <span class="mi">⭐</span>
+        <p>„Wiederholung hilft Kindern, Inhalte <strong>langfristig zu speichern</strong>. Erst durch mehrfaches Begegnen wird Wissen wirklich sicher."</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="doneP('wdh','ue')">Weiter: Übung →</button>
+    </div>
+
+    <!-- ÜBUNG -->
+    <div class="pbody" id="pb-ue">
+      <div class="box box-warn">
+        <label>🤔 Einstiegs-Frage</label>
+        <p>Du lernst ein Instrument. Du schaust dir ein Tutorial an und weißt jetzt, wie ein Lied gespielt wird. Kannst du es jetzt spielen?</p>
+      </div>
+      <h2 style="margin-top:18px">✏️ Lernprinzip 2: Übung</h2>
+      <p class="big-text">Wissen und Können sind zwei verschiedene Dinge. Nur durch <strong>aktives, wiederholtes Anwenden</strong> wird eine Fähigkeit zur sicheren Routine.</p>
+
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel 1</label>
+        <p>Beim täglichen Aufräumen üben die Kinder, Spielzeug zu sortieren (Bauklötze zu Bauklötzen, Puppen zu Puppen). Nach einigen Wochen können sie es selbstständig und zuverlässig.</p>
+      </div>
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel 2</label>
+        <p>Beim Frühstück üben die Kinder täglich das selbstständige Aufschneiden mit einem kindgerechten Messer. Die Motorik verbessert sich sichtbar über Wochen.</p>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Was ist der Unterschied zwischen Wiederholung und Übung?</div>
+        <div class="opts" id="q3c">
+          <div class="opt" onclick="ans('q3c',0,false,'q3c-fb')"><div class="ol">A</div> Es gibt keinen Unterschied – beides ist dasselbe.</div>
+          <div class="opt" onclick="ans('q3c',1,true,'q3c-fb')"><div class="ol">B</div> Wiederholung meint das mehrfache Begegnen mit einem Inhalt; Übung meint das aktive, selbstständige Anwenden einer Fähigkeit.</div>
+          <div class="opt" onclick="ans('q3c',2,false,'q3c-fb')"><div class="ol">C</div> Übung ist für kleine Kinder, Wiederholung für ältere Kinder.</div>
+          <div class="opt" onclick="ans('q3c',3,false,'q3c-fb')"><div class="ol">D</div> Wiederholung ist wichtiger als Übung.</div>
+        </div>
+        <div class="qfb" id="q3c-fb"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Welche Situation zeigt das Lernprinzip „Übung" am besten?</div>
+        <div class="opts" id="q3d">
+          <div class="opt" onclick="ans('q3d',0,false,'q3d-fb')"><div class="ol">A</div> Die Fachkraft zeigt einmal, wie man Zöpfe flechtet.</div>
+          <div class="opt" onclick="ans('q3d',1,false,'q3d-fb')"><div class="ol">B</div> Die Kinder schauen sich ein Bilderbuch über Zöpfe an.</div>
+          <div class="opt" onclick="ans('q3d',2,true,'q3d-fb')"><div class="ol">C</div> Die Kinder üben jede Woche an Puppenhaaren das Flechten, bis sie es sicher können.</div>
+          <div class="opt" onclick="ans('q3d',3,false,'q3d-fb')"><div class="ol">D</div> Die Fachkraft erklärt den Kindern die einzelnen Schritte des Flechtens.</div>
+        </div>
+        <div class="qfb" id="q3d-fb"></div>
+      </div>
+
+      <div class="fill-q" style="margin:14px 0">
+        <label>✍️ Beschreibe eine Kita-Situation, in der du das Lernprinzip „Übung" bewusst einsetzen würdest:</label>
+        <textarea placeholder="In welcher Alltagssituation in der Kita könnten Kinder etwas regelmäßig üben?"></textarea>
+      </div>
+
+      <div class="merksatz">
+        <span class="mi">⭐</span>
+        <p>„Durch regelmäßige Übung werden neue Fähigkeiten zur <strong>sicheren Routine</strong> – das stärkt das Selbstvertrauen der Kinder."</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="doneP('ue','ts')">Weiter: Teilschritte →</button>
+    </div>
+
+    <!-- TEILSCHRITTE -->
+    <div class="pbody" id="pb-ts">
+      <div class="box box-warn">
+        <label>🤔 Einstiegs-Frage</label>
+        <p>Du möchtest einem 3-Jährigen zeigen, wie man sich anzieht. Sagst du: „Zieh dir Socken, Hose, Shirt, Pullover und Schuhe an!" – oder gehst du Schritt für Schritt vor?</p>
+      </div>
+      <h2 style="margin-top:18px">🪜 Lernprinzip 3: Teilschritte</h2>
+      <p class="big-text">Komplexe Aufgaben werden in <strong>kleine, überschaubare Einzelschritte</strong> aufgeteilt. So wird kein Kind überfordert, und jeder Teilschritt gibt ein Erfolgserlebnis.</p>
+
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel: Schleife binden</label>
+        <p>Schritt 1: Schnürsenkel überkreuzen. → Schritt 2: Einen Knoten machen. → Schritt 3: Eine Schlaufe formen. → Schritt 4: Um die Schlaufe wickeln. → Erst wenn jeder Schritt sitzt: die Schleife!</p>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Ziel definieren</strong><p>Was soll das Kind am Ende können? (Gesamtziel)</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-t"><strong>In Teilschritte aufteilen</strong><p>Was ist der erste, zweite, dritte Schritt?</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Jeden Schritt einzeln üben</strong><p>Kein Kind wird mit zu viel auf einmal überfordert.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-t"><strong>Teilschritte verbinden</strong><p>Erst wenn alle Schritte klappen, werden sie zusammengesetzt.</p></div></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Warum ist die Aufteilung in Teilschritte besonders wichtig für Kleinkinder?</div>
+        <div class="opts" id="q3e">
+          <div class="opt" onclick="ans('q3e',0,false,'q3e-fb')"><div class="ol">A</div> Weil Kleinkinder ungeduldig sind und keine langen Erklärungen mögen.</div>
+          <div class="opt" onclick="ans('q3e',1,true,'q3e-fb')"><div class="ol">B</div> Weil ihr Arbeitsgedächtnis begrenzt ist – sie können nicht viele Schritte gleichzeitig verarbeiten.</div>
+          <div class="opt" onclick="ans('q3e',2,false,'q3e-fb')"><div class="ol">C</div> Weil die Fachkraft dann weniger erklären muss.</div>
+          <div class="opt" onclick="ans('q3e',3,false,'q3e-fb')"><div class="ol">D</div> Weil es im Kita-Alltag mehr Zeit spart.</div>
+        </div>
+        <div class="qfb" id="q3e-fb"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Ordne die Teilschritte für „Hände waschen" in die richtige Reihenfolge! Welche Aussage stimmt?</div>
+        <div class="opts" id="q3f">
+          <div class="opt" onclick="ans('q3f',0,false,'q3f-fb')"><div class="ol">A</div> Erst Seife, dann Wasser anmachen, dann Hände nass machen.</div>
+          <div class="opt" onclick="ans('q3f',1,true,'q3f-fb')"><div class="ol">B</div> Wasser anmachen → Hände nass machen → Seife nehmen → Hände einreiben → Abspülen → Abtrocknen.</div>
+          <div class="opt" onclick="ans('q3f',2,false,'q3f-fb')"><div class="ol">C</div> Die Reihenfolge der Schritte ist egal, Hauptsache die Hände werden sauber.</div>
+          <div class="opt" onclick="ans('q3f',3,false,'q3f-fb')"><div class="ol">D</div> Hände waschen ist zu einfach für Teilschritte.</div>
+        </div>
+        <div class="qfb" id="q3f-fb"></div>
+      </div>
+
+      <div class="fill-q" style="margin:14px 0">
+        <label>✍️ Teile das Ziel „Kinder lernen, Brote zu schmieren" in mindestens 4 sinnvolle Teilschritte auf:</label>
+        <textarea placeholder="Schritt 1: ...\nSchritt 2: ...\nSchritt 3: ...\nSchritt 4: ..."></textarea>
+      </div>
+
+      <div class="merksatz">
+        <span class="mi">⭐</span>
+        <p>„Kleine Schritte führen zum großen Ziel. Jeder Teilschritt gibt dem Kind ein <strong>Erfolgserlebnis</strong> und baut Sicherheit auf."</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="doneP('ts','var')">Weiter: Variabilität →</button>
+    </div>
+
+    <!-- VARIABILITÄT -->
+    <div class="pbody" id="pb-var">
+      <div class="box box-warn">
+        <label>🤔 Einstiegs-Frage</label>
+        <p>Du machst jeden Morgen exakt dasselbe Angebot – gleiche Materialien, gleicher Ablauf. Wie reagieren die Kinder wohl nach 2 Wochen?</p>
+      </div>
+      <h2 style="margin-top:18px">🎨 Lernprinzip 4: Variabilität</h2>
+      <p class="big-text">Variabilität bedeutet: Inhalte werden auf <strong>verschiedene Weisen</strong> angeboten. Unterschiedliche Materialien, Methoden und Zugänge halten die Motivation aufrecht und sprechen verschiedene Lerntypen an.</p>
+
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel: Thema „Farben"</label>
+        <p>Woche 1: Malen mit Fingerfarben. Woche 2: Farbige Bauklötze sortieren. Woche 3: Farben in der Natur suchen. Woche 4: Farbkarten-Memory spielen. – Immer dasselbe Thema, aber immer anders!</p>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Warum ist Variabilität wichtig – auch wenn das Thema dasselbe bleibt?</div>
+        <div class="opts" id="q3g">
+          <div class="opt" onclick="ans('q3g',0,false,'q3g-fb')"><div class="ol">A</div> Weil Kinder sonst denken, dass das Thema nicht wichtig ist.</div>
+          <div class="opt" onclick="ans('q3g',1,true,'q3g-fb')"><div class="ol">B</div> Weil Abwechslung die Motivation erhöht, verschiedene Lerntypen anspricht und Inhalte aus mehreren Perspektiven festigt.</div>
+          <div class="opt" onclick="ans('q3g',2,false,'q3g-fb')"><div class="ol">C</div> Weil sonst die Fachkraft selbst langweilig wird.</div>
+          <div class="opt" onclick="ans('q3g',3,false,'q3g-fb')"><div class="ol">D</div> Weil im Lehrplan viele verschiedene Methoden vorgeschrieben sind.</div>
+        </div>
+        <div class="qfb" id="q3g-fb"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Welches Beispiel zeigt Variabilität am besten?</div>
+        <div class="opts" id="q3h">
+          <div class="opt" onclick="ans('q3h',0,false,'q3h-fb')"><div class="ol">A</div> Die Kinder machen jeden Tag dasselbe Puzzle zum Thema Tiere.</div>
+          <div class="opt" onclick="ans('q3h',1,false,'q3h-fb')"><div class="ol">B</div> Die Fachkraft erklärt das Thema Tiere jeden Tag auf eine andere Art verbal.</div>
+          <div class="opt" onclick="ans('q3h',2,true,'q3h-fb')"><div class="ol">C</div> Tiere werden mal mit Bilderbuch, mal mit Tierfiguren, mal durch Geräusche und mal durch Naturbeobachtung erkundet.</div>
+          <div class="opt" onclick="ans('q3h',3,false,'q3h-fb')"><div class="ol">D</div> Die Fachkraft wechselt jede Woche das Thema komplett.</div>
+        </div>
+        <div class="qfb" id="q3h-fb"></div>
+      </div>
+
+      <div class="fill-q" style="margin:14px 0">
+        <label>✍️ Das Thema ist „Herbst". Plane 4 verschiedene Zugänge (unterschiedliche Materialien oder Methoden):</label>
+        <textarea placeholder="Zugang 1: z.B. Herbstblätter sammeln und ordnen...\nZugang 2:\nZugang 3:\nZugang 4:"></textarea>
+      </div>
+
+      <div class="merksatz">
+        <span class="mi">⭐</span>
+        <p>„Abwechslung hält die <strong>Motivation hoch</strong> und sorgt dafür, dass Inhalte aus verschiedenen Perspektiven verankert werden."</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="doneP('var','ind')">Weiter: Individualisierung →</button>
+    </div>
+
+    <!-- INDIVIDUALISIERUNG -->
+    <div class="pbody" id="pb-ind">
+      <div class="box box-warn">
+        <label>🤔 Einstiegs-Frage</label>
+        <p>In einer Gruppe sind Kinder von 3 bis 5 Jahren. Die Jüngsten schaffen 6-teilige Puzzles, die Ältesten langweilen sich dabei. Was tust du?</p>
+      </div>
+      <h2 style="margin-top:18px">🎯 Lernprinzip 5: Individualisierung</h2>
+      <p class="big-text">Jedes Kind bringt andere Voraussetzungen mit. Individualisierung bedeutet: Das Angebot wird an den <strong>Entwicklungsstand, die Stärken und die Bedürfnisse</strong> des einzelnen Kindes angepasst.</p>
+
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel: Puzzle</label>
+        <p>3-Jährige → 6-teiliges Puzzle. 4-Jährige → 12-teiliges Puzzle. 5-Jährige → 24-teiliges Puzzle. Alle erleben Erfolgserlebnisse – jedes auf seinem eigenen Niveau!</p>
+      </div>
+      <div class="box box-info">
+        <label>📍 Praxisbeispiel: Turm bauen</label>
+        <p>Manche Kinder stapeln Klötze einfach. Andere bauen nach einem Muster. Wieder andere planen eine Struktur. Die Fachkraft gibt jedem Kind einen passenden Impuls.</p>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Was ist KEIN Beispiel für Individualisierung?</div>
+        <div class="opts" id="q3i">
+          <div class="opt" onclick="ans('q3i',0,false,'q3i-fb')"><div class="ol">A</div> Ein Kind bekommt ein schwereres Puzzle als die anderen.</div>
+          <div class="opt" onclick="ans('q3i',1,false,'q3i-fb')"><div class="ol">B</div> Die Fachkraft gibt einem Kind mehr Zeit beim Malen, weil es noch übt.</div>
+          <div class="opt" onclick="ans('q3i',2,true,'q3i-fb')"><div class="ol">C</div> Alle Kinder bekommen dieselbe Aufgabe mit denselben Materialien und derselben Zeit.</div>
+          <div class="opt" onclick="ans('q3i',3,false,'q3i-fb')"><div class="ol">D</div> Ein Kind darf zuerst mit einfacheren Scheren schneiden, später mit komplexeren.</div>
+        </div>
+        <div class="qfb" id="q3i-fb"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qtitle">Warum ist Individualisierung manchmal schwierig in der Praxis?</div>
+        <div class="opts" id="q3j">
+          <div class="opt" onclick="ans('q3j',0,false,'q3j-fb')"><div class="ol">A</div> Weil Kinder nicht individuell behandelt werden wollen.</div>
+          <div class="opt" onclick="ans('q3j',1,true,'q3j-fb')"><div class="ol">B</div> Weil es mehr Planung, verschiedene Materialien und genaue Beobachtung der Kinder erfordert.</div>
+          <div class="opt" onclick="ans('q3j',2,false,'q3j-fb')"><div class="ol">C</div> Weil Kinder dann neidisch auf die Aufgaben der anderen werden.</div>
+          <div class="opt" onclick="ans('q3j',3,false,'q3j-fb')"><div class="ol">D</div> Weil es keine geeigneten Materialien gibt.</div>
+        </div>
+        <div class="qfb" id="q3j-fb"></div>
+      </div>
+
+      <div class="fill-q" style="margin:14px 0">
+        <label>✍️ Du planst ein Angebot zum Thema „Zählen bis 5". Beschreibe, wie du es für 3 verschiedene Entwicklungsniveaus gestalten würdest:</label>
+        <textarea style="min-height:100px" placeholder="Niveau 1 (Anfänger): ...\nNiveau 2 (Fortgeschrittene): ...\nNiveau 3 (Experten): ..."></textarea>
+      </div>
+
+      <div class="merksatz">
+        <span class="mi">⭐</span>
+        <p>„Individualisierung stellt sicher, dass <strong>jedes Kind</strong> – egal mit welchen Voraussetzungen – auf seinem Niveau lernen und Erfolgserlebnisse haben kann."</p>
+      </div>
+
+      <div id="p3-done-msg2" style="display:none" class="box box-success" style="margin-top:14px"><label>🎉 Alle 5 Prinzipien erarbeitet!</label><p>Du bist bereit für den Analysen-Lauf in Kapitel 4!</p></div>
+      <button class="btn btn-success btn-sm" onclick="doneP('ind',null)">Alle 5 erarbeitet! ✓</button>
+    </div>
+
+  </div>
+
+  <!-- ÜBERSICHT MERKSÄTZE -->
+  <div class="card">
+    <span class="badge badge-purple">3.6 Alle Merksätze im Überblick</span>
+    <h2 style="margin-top:10px">Deine Lernprinzipien-Übersicht</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Lernprinzip</th><th>Merksatz</th><th>Praxis-Schlüsselwort</th></tr>
+        <tr><td>👆 Aktivität</td><td>Kinder lernen durch Tun</td><td>Selbst machen</td></tr>
+        <tr><td>👀 Anschauung</td><td>Kinder lernen durch Sehen & Erleben</td><td>Echte Materialien</td></tr>
+        <tr><td>🔄 Wiederholung</td><td>Mehrfach begegnen = dauerhaft speichern</td><td>Täglich aufgreifen</td></tr>
+        <tr><td>✏️ Übung</td><td>Aktives Anwenden = sichere Routine</td><td>Regelmäßig üben</td></tr>
+        <tr><td>🪜 Teilschritte</td><td>Kleine Schritte → kein Kind überfordert</td><td>Schritt für Schritt</td></tr>
+        <tr><td>🎨 Variabilität</td><td>Abwechslung hält die Motivation hoch</td><td>Verschiedene Wege</td></tr>
+        <tr><td>🎯 Individualisierung</td><td>Jedes Kind auf seinem Niveau</td><td>Anpassen</td></tr>
+      </table>
+    </div>
+
+    <div class="qblock" style="margin-top:16px">
+      <div class="qtitle">Welches Lernprinzip passt zur Aussage: „Die Fachkraft bietet dasselbe Thema einmal mit Bauklötzen, einmal mit Ton und einmal mit Papier an"?</div>
+      <div class="opts" id="q3k">
+        <div class="opt" onclick="ans('q3k',0,false,'q3k-fb')"><div class="ol">A</div> Wiederholung</div>
+        <div class="opt" onclick="ans('q3k',1,false,'q3k-fb')"><div class="ol">B</div> Übung</div>
+        <div class="opt" onclick="ans('q3k',2,true,'q3k-fb')"><div class="ol">C</div> Variabilität</div>
+        <div class="opt" onclick="ans('q3k',3,false,'q3k-fb')"><div class="ol">D</div> Individualisierung</div>
+      </div>
+      <div class="qfb" id="q3k-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">Eine Fachkraft passt die Aufgaben für jedes Kind individuell an. Das ist …?</div>
+      <div class="opts" id="q3l">
+        <div class="opt" onclick="ans('q3l',0,false,'q3l-fb')"><div class="ol">A</div> Aktivität</div>
+        <div class="opt" onclick="ans('q3l',1,true,'q3l-fb')"><div class="ol">B</div> Individualisierung</div>
+        <div class="opt" onclick="ans('q3l',2,false,'q3l-fb')"><div class="ol">C</div> Teilschritte</div>
+        <div class="opt" onclick="ans('q3l',3,false,'q3l-fb')"><div class="ol">D</div> Anschauung</div>
+      </div>
+      <div class="qfb" id="q3l-fb"></div>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-primary" onclick="nextCh()">Weiter zu Kapitel 4 – Analysen-Lauf →</button>
+    </div>
+  </div>
+
+</div><!-- /section 3 -->
+
+<!-- ═══════════════════ KAPITEL 4 ═══════════════════ -->
+<div class="section" id="s4">
+
+  <div class="hero hero-teal" data-emoji="🔍">
+    <div class="htag">⏰ Kapitel 4 · ca. 40 Minuten</div>
+    <h1>Digitaler Analysen-Lauf</h1>
+    <p>Analysiere 5 echte Kita-Situationen! Erkenne Lernprinzipien, finde Probleme und entwickle Verbesserungen.</p>
+  </div>
+
+  <div class="card card-sm">
+    <h3>📋 Dein Analyseraster für jede Station:</h3>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Was passiert?</strong><p>Beschreibe kurz die Situation.</p></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Welches Lernprinzip erkennst du?</strong><p>Oder: Welches fehlt?</p></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Was fehlt / ist problematisch?</strong><p>Begründe mit Fachbegriffen.</p></div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t"><strong>Warum ist das problematisch?</strong><p>Was passiert mit den Kindern dadurch?</p></div></div>
+      <div class="step"><div class="step-n">5</div><div class="step-t"><strong>Wie könnte man es verbessern?</strong><p>Konkrete, praxisnahe Ideen!</p></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sta-nav">
+      <button class="sta-btn active" onclick="showSta(1)" id="sb1">📍 Station 1</button>
+      <button class="sta-btn" onclick="showSta(2)" id="sb2">📍 Station 2</button>
+      <button class="sta-btn" onclick="showSta(3)" id="sb3">📍 Station 3</button>
+      <button class="sta-btn" onclick="showSta(4)" id="sb4">📍 Station 4</button>
+      <button class="sta-btn" onclick="showSta(5)" id="sb5">📍 Station 5</button>
+    </div>
+
+    <!-- STATION 1 -->
+    <div class="sta-body show" id="st1">
+      <div class="badge badge-red" style="margin-bottom:12px">❌ Station 1: Problematisches Angebot</div>
+      <div class="situation">
+        <strong>Situation:</strong> Fachkraft Mia erklärt den Kindern (4 Jahre) 20 Minuten lang, wie Schmetterlinge leben. Sie zeigt dabei keine Bilder, kein Modell und kein echtes Tier. Die Kinder sitzen still und hören zu – mehrere schauen gelangweilt aus dem Fenster. Am Ende fragt Mia: „Was haben wir heute gelernt?" Kaum ein Kind meldet sich.
+      </div>
+
+      <button class="hint-btn" onclick="tog('h1')">💡 Tipp anzeigen</button>
+      <div class="hintbox" id="h1">Denk an die Lernprinzipien Aktivität und Anschauung. Kinder im Vorschulalter können sich nur kurz auf reine Sprache konzentrieren. Was brauchen sie, um wirklich zu lernen?</div>
+
+      <div class="qblock">
+        <div class="qtitle">Welches Lernprinzip fehlt hauptsächlich?</div>
+        <div class="opts" id="q4a">
+          <div class="opt" onclick="ans('q4a',0,true,'q4a-fb')"><div class="ol">A</div> Aktivität und Anschauung – Kinder sind passiv, es gibt nichts zu sehen/anfassen.</div>
+          <div class="opt" onclick="ans('q4a',1,false,'q4a-fb')"><div class="ol">B</div> Individualisierung – alle Kinder bekommen dieselbe Erklärung.</div>
+          <div class="opt" onclick="ans('q4a',2,false,'q4a-fb')"><div class="ol">C</div> Wiederholung – das Thema wurde nur einmal erklärt.</div>
+          <div class="opt" onclick="ans('q4a',3,false,'q4a-fb')"><div class="ol">D</div> Variabilität – es gab nur eine Methode.</div>
+        </div>
+        <div class="qfb" id="q4a-fb"></div>
+      </div>
+
+      <div class="aq-list">
+        <div class="aq"><div class="aq-num">1</div><div style="flex:1"><label>Was passiert in der Situation?</label><textarea id="s1q1" placeholder="Beschreibe kurz..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">2</div><div style="flex:1"><label>Welche Lernprinzipien fehlen (mit Begründung)?</label><textarea id="s1q2" placeholder="Nenne die Prinzipien und erkläre, warum sie fehlen..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">3</div><div style="flex:1"><label>Warum ist das für die Kinder problematisch?</label><textarea id="s1q3" placeholder="Was passiert mit den Kindern, wenn diese Prinzipien fehlen?"></textarea></div></div>
+        <div class="aq"><div class="aq-num">4</div><div style="flex:1"><label>Wie würdest du das Angebot verbessern? (Mind. 3 konkrete Ideen)</label><textarea id="s1q4" placeholder="Idee 1: ...\nIdee 2: ...\nIdee 3: ..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">5</div><div style="flex:1"><label>Zusatz: Welche weiteren Lernprinzipien könntest du noch einbauen?</label><textarea id="s1q5" placeholder="Denk an Wiederholung, Teilschritte, Variabilität..."></textarea></div></div>
+      </div>
+      <button class="btn btn-warn btn-sm" onclick="showSol(1)">Musterlösung anzeigen</button>
+      <div class="qfb inf" id="sol1">
+        <strong>✅ Musterlösung Station 1:</strong><br><br>
+        <strong>Was fehlt:</strong> Aktivität (Kinder sitzen nur passiv), Anschauung (keine visuellen Hilfsmittel, nichts zum Anfassen).<br><br>
+        <strong>Warum problematisch:</strong> 4-Jährige können sich nicht 20 Minuten auf rein verbale Informationen konzentrieren. Ohne eigenes Erleben bleibt kaum etwas hängen.<br><br>
+        <strong>Verbesserungen:</strong> Echte Schmetterlinge zeigen (oder Fotos/Modell), Kinder Flügel aus Papier basteln lassen, Raupe-zu-Schmetterling-Sequenz mit Bildern legen, kurze Spieleinheiten einbauen, Kinder aktiv befragen und einbeziehen.<br><br>
+        <strong>Weitere Prinzipien:</strong> Teilschritte (zuerst Raupe, dann Puppe, dann Schmetterling), Variabilität (verschiedene Zugänge), Wiederholung (an mehreren Tagen).
+      </div>
+      <div class="btns"><button class="btn btn-primary btn-sm" onclick="showSta(2);markSta(1)">Weiter zu Station 2 →</button></div>
+    </div>
+
+    <!-- STATION 2 -->
+    <div class="sta-body" id="st2">
+      <div class="badge badge-green" style="margin-bottom:12px">✅ Station 2: Gutes Angebot</div>
+      <div class="situation">
+        <strong>Situation:</strong> Lea baut mit einer Gruppe von 3-Jährigen jeden Morgen einen Turm aus Bauklötzen. Sie wechselt dabei die Farben, Formen und Größen der Klötze regelmäßig. Einige Kinder zählen die Klötze schon laut mit, andere stapeln fröhlich drauflos. Lea lobt gezielt: „Emma, schau mal, du schaffst es jetzt schon alleine!"
+      </div>
+
+      <button class="hint-btn" onclick="tog('h2')">💡 Tipp anzeigen</button>
+      <div class="hintbox" id="h2">Welche Lernprinzipien erkennst du? Achte auf: Wiederholung (jeden Morgen), Übung (regelmäßig bauen), Variabilität (wechselndes Material), Individualisierung (jedes Kind auf seinem Level)...</div>
+
+      <div class="qblock">
+        <div class="qtitle">Welches Lernprinzip wird hier BESONDERS gut umgesetzt?</div>
+        <div class="opts" id="q4b">
+          <div class="opt" onclick="ans('q4b',0,false,'q4b-fb')"><div class="ol">A</div> Nur Aktivität – mehr nicht.</div>
+          <div class="opt" onclick="ans('q4b',1,true,'q4b-fb')"><div class="ol">B</div> Mehrere Prinzipien gleichzeitig: Wiederholung, Übung, Variabilität, Individualisierung und Aktivität.</div>
+          <div class="opt" onclick="ans('q4b',2,false,'q4b-fb')"><div class="ol">C</div> Nur Variabilität.</div>
+          <div class="opt" onclick="ans('q4b',3,false,'q4b-fb')"><div class="ol">D</div> Nur Individualisierung.</div>
+        </div>
+        <div class="qfb" id="q4b-fb"></div>
+      </div>
+
+      <div class="aq-list">
+        <div class="aq"><div class="aq-num">1</div><div style="flex:1"><label>Welche Lernprinzipien erkennst du in Leas Angebot?</label><textarea id="s2q1" placeholder="Nenne die Prinzipien und begründe, wo du sie erkennst..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">2</div><div style="flex:1"><label>Warum ist dieses Angebot pädagogisch sinnvoll?</label><textarea id="s2q2" placeholder="Begründe mit Fachbegriffen..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">3</div><div style="flex:1"><label>Gibt es etwas, was Lea noch verbessern oder ergänzen könnte?</label><textarea id="s2q3" placeholder="Ideen..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">4</div><div style="flex:1"><label>Wie könntest du dieses Angebot weiterentwickeln (z.B. nach 4 Wochen)?</label><textarea id="s2q4" placeholder="Was könnte als nächster Schritt kommen?"></textarea></div></div>
+      </div>
+      <button class="btn btn-warn btn-sm" onclick="showSol(2)">Musterlösung anzeigen</button>
+      <div class="qfb inf" id="sol2">
+        <strong>✅ Musterlösung Station 2:</strong><br><br>
+        <strong>Erkennbare Prinzipien:</strong> Wiederholung (jeden Morgen), Übung (regelmäßiges Bauen), Variabilität (wechselndes Material), Aktivität (Kinder bauen selbst), Individualisierung (manche zählen mit, andere stapeln – jedes auf eigenem Niveau).<br><br>
+        <strong>Warum sinnvoll:</strong> Lea kombiniert viele Prinzipien, sorgt für Abwechslung und geht auf jedes Kind ein. Das maximiert den Lernerfolg.<br><br>
+        <strong>Mögliche Ergänzungen:</strong> Anschauung noch stärken (z.B. Baupläne zeigen), Teilschritte benennen (erst 3 Klötze, dann 5, dann mehr).<br><br>
+        <strong>Weiterentwicklung:</strong> Kinder könnten eigene Baupläne zeichnen, Brücken bauen, oder Klötze nach Gewicht sortieren.
+      </div>
+      <div class="btns"><button class="btn btn-primary btn-sm" onclick="showSta(3);markSta(2)">Weiter zu Station 3 →</button></div>
+    </div>
+
+    <!-- STATION 3 -->
+    <div class="sta-body" id="st3">
+      <div class="badge badge-red" style="margin-bottom:12px">❌ Station 3: Falsches Material / Keine Anschauung</div>
+      <div class="situation">
+        <strong>Situation:</strong> Fachkraft Tom möchte mit 2-Jährigen das Thema Obst erarbeiten. Er legt Arbeitsblätter mit kleinen, schwarz-weiß Zeichnungen von Früchten aus und erklärt den Kindern, was sie anmalen sollen. Die 2-Jährigen können kaum mit Stiften umgehen, wirken überfordert und verlieren schnell das Interesse. Tom sagt genervt: „Anstrengt euch doch mal!"
+      </div>
+
+      <button class="hint-btn" onclick="tog('h3')">💡 Tipp anzeigen</button>
+      <div class="hintbox" id="h3">Was brauchen 2-Jährige? Sie denken und lernen über alle Sinne – sie brauchen echte Erfahrungen! Denk an Anschauung, Aktivität, Teilschritte und Individualisierung.</div>
+
+      <div class="qblock">
+        <div class="qtitle">Was ist das GRÖSSTE Problem in dieser Situation?</div>
+        <div class="opts" id="q4c">
+          <div class="opt" onclick="ans('q4c',0,false,'q4c-fb')"><div class="ol">A</div> Tom war nicht nett genug zu den Kindern.</div>
+          <div class="opt" onclick="ans('q4c',1,true,'q4c-fb')"><div class="ol">B</div> Material und Aufgabe sind komplett nicht altersgerecht – 2-Jährige brauchen sinnliche Erfahrungen, keine abstrakten Arbeitsblätter.</div>
+          <div class="opt" onclick="ans('q4c',2,false,'q4c-fb')"><div class="ol">C</div> Das Thema Obst ist zu schwer für 2-Jährige.</div>
+          <div class="opt" onclick="ans('q4c',3,false,'q4c-fb')"><div class="ol">D</div> Die Zeichnungen waren zu klein.</div>
+        </div>
+        <div class="qfb" id="q4c-fb"></div>
+      </div>
+
+      <div class="aq-list">
+        <div class="aq"><div class="aq-num">1</div><div style="flex:1"><label>Welche Lernprinzipien werden verletzt? (mit je einem Satz Begründung)</label><textarea id="s3q1" placeholder="Prinzip 1: ... weil ...\nPrinzip 2: ..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">2</div><div style="flex:1"><label>Warum überfordert dieses Angebot die Kinder?</label><textarea id="s3q2" placeholder="Erkläre entwicklungspsychologisch..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">3</div><div style="flex:1"><label>Wie würdest DU das Angebot „Obst" für 2-Jährige gestalten? (Mind. 3 konkrete Ideen)</label><textarea id="s3q3" placeholder="Idee 1:\nIdee 2:\nIdee 3:"></textarea></div></div>
+        <div class="aq"><div class="aq-num">4</div><div style="flex:1"><label>Welche Lernprinzipien setzt du in deiner Verbesserung um?</label><textarea id="s3q4" placeholder="Nenne die Prinzipien..."></textarea></div></div>
+      </div>
+      <button class="btn btn-warn btn-sm" onclick="showSol(3)">Musterlösung anzeigen</button>
+      <div class="qfb inf" id="sol3">
+        <strong>✅ Musterlösung Station 3:</strong><br><br>
+        <strong>Verletzte Prinzipien:</strong> Anschauung (keine echten Früchte), Aktivität (Kinder malen passiv nach), Individualisierung (Aufgabe zu komplex), Teilschritte (zu schwerer Einstieg für 2-Jährige).<br><br>
+        <strong>Überforderung:</strong> 2-Jährige sind in der Greifstufe des Denkens – sie lernen durch Anfassen, Riechen, Schmecken, nicht durch abstrakte Symbole auf Papier. Motorisch können sie noch kaum mit Stiften umgehen.<br><br>
+        <strong>Verbesserung:</strong> Echte Früchte mitbringen, anfassen, riechen, probieren lassen. Dann benennen. Dann nach Farbe sortieren. Dann Stempel mit echten Früchten machen.<br><br>
+        <strong>Umgesetzte Prinzipien:</strong> Anschauung (echte Früchte), Aktivität (selbst sortieren/stempeln), Teilschritte (erst anfassen → dann benennen → dann sortieren), Variabilität (verschiedene Sinne ansprechen).
+      </div>
+      <div class="btns"><button class="btn btn-primary btn-sm" onclick="showSta(4);markSta(3)">Weiter zu Station 4 →</button></div>
+    </div>
+
+    <!-- STATION 4 -->
+    <div class="sta-body" id="st4">
+      <div class="badge badge-red" style="margin-bottom:12px">❌ Station 4: Keine Individualisierung</div>
+      <div class="situation">
+        <strong>Situation:</strong> Sandra hat für alle 8 Kinder (3–5 Jahre) dasselbe 24-teilige Puzzle ausgewählt. Die 5-Jährigen sind nach 3 Minuten fertig und warten gelangweilt. Die 3-Jährigen sind komplett überfordert – einige beginnen zu weinen. Sandra sagt: „Alle schaffen das, wenn sie sich anstrengen!" Nach dem Angebot sagt sie: „Puzzeln liegt manchen halt nicht."
+      </div>
+
+      <button class="hint-btn" onclick="tog('h4')">💡 Tipp anzeigen</button>
+      <div class="hintbox" id="h4">Stell dich in die Lage der 3-Jährigen und der 5-Jährigen. Was erleben beide? Denk an Individualisierung und Teilschritte – und was passiert, wenn Erfolgserlebnisse fehlen.</div>
+
+      <div class="qblock">
+        <div class="qtitle">Was ist Sandras grundlegender Denkfehler?</div>
+        <div class="opts" id="q4d">
+          <div class="opt" onclick="ans('q4d',0,false,'q4d-fb')"><div class="ol">A</div> Sie hat Puzzles ausgewählt statt Bauklötze.</div>
+          <div class="opt" onclick="ans('q4d',1,true,'q4d-fb')"><div class="ol">B</div> Sie geht davon aus, dass alle Kinder denselben Entwicklungsstand haben und gleiche Herausforderungen brauchen.</div>
+          <div class="opt" onclick="ans('q4d',2,false,'q4d-fb')"><div class="ol">C</div> Die Gruppe ist zu groß für dieses Angebot.</div>
+          <div class="opt" onclick="ans('q4d',3,false,'q4d-fb')"><div class="ol">D</div> Die Kinder haben einfach keine Lust.</div>
+        </div>
+        <div class="qfb" id="q4d-fb"></div>
+      </div>
+
+      <div class="aq-list">
+        <div class="aq"><div class="aq-num">1</div><div style="flex:1"><label>Welche Lernprinzipien fehlen in Sandras Angebot?</label><textarea id="s4q1" placeholder="Nenne und begründe..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">2</div><div style="flex:1"><label>Was erleben die 3-Jährigen? Was erleben die 5-Jährigen?</label><textarea id="s4q2" placeholder="3-Jährige: ...\n5-Jährige: ..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">3</div><div style="flex:1"><label>Wie würdest du das Angebot für beide Altersgruppen gestalten?</label><textarea id="s4q3" placeholder="Für 3-Jährige: ...\nFür 4-Jährige: ...\nFür 5-Jährige: ..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">4</div><div style="flex:1"><label>Was sagt Sandras Reaktion über ihr pädagogisches Verständnis aus?</label><textarea id="s4q4" placeholder="Begründe fachlich..."></textarea></div></div>
+      </div>
+      <button class="btn btn-warn btn-sm" onclick="showSol(4)">Musterlösung anzeigen</button>
+      <div class="qfb inf" id="sol4">
+        <strong>✅ Musterlösung Station 4:</strong><br><br>
+        <strong>Fehlende Prinzipien:</strong> Individualisierung (alle dasselbe Niveau), Teilschritte (kein schrittweiser Aufbau für 3-Jährige), Aktivität (Überforderung blockiert echte Aktivität).<br><br>
+        <strong>3-Jährige erleben:</strong> Frustration, Überforderung, Scham → Lernblockade. <strong>5-Jährige erleben:</strong> Langeweile, Unterforderung → kein Lernerfolg.<br><br>
+        <strong>Verbesserung:</strong> 3-Jährige → 6-teilige Puzzles; 4-Jährige → 12-teilige; 5-Jährige → 24-teilige oder schwierigere. So erleben alle Erfolgserlebnisse.<br><br>
+        <strong>Sandras Reaktion:</strong> Sie macht die Kinder verantwortlich statt ihre Planung zu hinterfragen – das widerspricht professionellem pädagogischen Denken. Lernmisserfolg ist immer auch ein Planungsproblem.
+      </div>
+      <div class="btns"><button class="btn btn-primary btn-sm" onclick="showSta(5);markSta(4)">Weiter zu Station 5 →</button></div>
+    </div>
+
+    <!-- STATION 5 -->
+    <div class="sta-body" id="st5">
+      <div class="badge badge-green" style="margin-bottom:12px">✅ Station 5: Vorbildliches Angebot mit Teilschritten</div>
+      <div class="situation">
+        <strong>Situation:</strong> Julia möchte Kindern das Kneten beibringen. Sie plant über 4 Wochen: Woche 1: Knete anfassen, quetschen, fühlen. Woche 2: Bällchen formen. Woche 3: Würste rollen. Woche 4: Einfache Tiere modellieren. Sie beobachtet jedes Kind und gibt individuelle Impulse: „Max, versuch mal, die Wurst noch dünner zu machen!" Manche Kinder modellieren schon in Woche 2 kleine Tiere.
+      </div>
+
+      <button class="hint-btn" onclick="tog('h5')">💡 Tipp anzeigen</button>
+      <div class="hintbox" id="h5">Julias Angebot ist ein Paradebeispiel! Zähle alle Lernprinzipien auf, die du erkennst. Denk an Teilschritte, Wiederholung, Übung, Variabilität, Individualisierung, Aktivität und Anschauung.</div>
+
+      <div class="qblock">
+        <div class="qtitle">Welches Lernprinzip zeigt Julia besonders gut durch ihren 4-Wochen-Plan?</div>
+        <div class="opts" id="q4e">
+          <div class="opt" onclick="ans('q4e',0,false,'q4e-fb')"><div class="ol">A</div> Nur Variabilität.</div>
+          <div class="opt" onclick="ans('q4e',1,false,'q4e-fb')"><div class="ol">B</div> Nur Anschauung.</div>
+          <div class="opt" onclick="ans('q4e',2,true,'q4e-fb')"><div class="ol">C</div> Teilschritte – jede Woche eine neue Kompetenz, die auf der vorherigen aufbaut.</div>
+          <div class="opt" onclick="ans('q4e',3,false,'q4e-fb')"><div class="ol">D</div> Nur Wiederholung.</div>
+        </div>
+        <div class="qfb" id="q4e-fb"></div>
+      </div>
+
+      <div class="aq-list">
+        <div class="aq"><div class="aq-num">1</div><div style="flex:1"><label>Zähle ALLE Lernprinzipien auf, die du in Julias Angebot erkennst (mit Beispiel aus dem Text):</label><textarea style="min-height:120px" id="s5q1" placeholder="Aktivität: ... weil ...\nAnschauung: ...\nWiederholung: ...\nÜbung: ...\nTeilschritte: ...\nVariabilität: ...\nIndividualisierung: ..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">2</div><div style="flex:1"><label>Warum ist der 4-Wochen-Plan pädagogisch besonders sinnvoll?</label><textarea id="s5q2" placeholder="Begründe mit Fachbegriffen..."></textarea></div></div>
+        <div class="aq"><div class="aq-num">3</div><div style="flex:1"><label>Julia bemerkt, dass manche Kinder schon in Woche 2 Tiere formen. Was macht sie richtig?</label><textarea id="s5q3" placeholder="Welches Prinzip zeigt sie hier?"></textarea></div></div>
+        <div class="aq"><div class="aq-num">4</div><div style="flex:1"><label>Übertrage Julias Ansatz auf ein anderes Thema deiner Wahl (erstelle einen eigenen Wochen-Plan):</label><textarea style="min-height:100px" id="s5q4" placeholder="Thema: ...\nWoche 1: ...\nWoche 2: ...\nWoche 3: ...\nWoche 4: ..."></textarea></div></div>
+      </div>
+      <button class="btn btn-warn btn-sm" onclick="showSol(5)">Musterlösung anzeigen</button>
+      <div class="qfb inf" id="sol5">
+        <strong>✅ Musterlösung Station 5:</strong><br><br>
+        <strong>Alle erkennbaren Prinzipien:</strong><br>
+        Aktivität (Kinder kneten selbst), Anschauung (direktes sinnliches Erleben der Knetmasse), Wiederholung (jede Woche wird geknetet), Übung (jede Fähigkeit wird vor dem nächsten Schritt geübt), Teilschritte (jede Woche eine neue Kompetenz), Variabilität (quetschen → ballen → rollen → formen), Individualisierung (individuelle Impulse, manchen geht es schneller).<br><br>
+        <strong>Warum sinnvoll:</strong> Julia vermeidet Überforderung, gibt jedem Kind Zeit, jeden Schritt zu verinnerlichen. Gleichzeitig bleibt die Motivation hoch durch steigenden Schwierigkeitsgrad.<br><br>
+        <strong>Kinder in Woche 2:</strong> Julia zeigt Individualisierung – sie akzeptiert, dass Kinder unterschiedlich schnell lernen, und passt ihren Impuls an das einzelne Kind an.
+      </div>
+
+      <div class="box box-success" style="margin-top:14px"><label>🎉 Analysen-Lauf abgeschlossen!</label><p>Du hast alle 5 Stationen analysiert. Jetzt kommt der Transfer!</p></div>
+      <div class="btns">
+        <button class="btn btn-primary" onclick="markSta(5);nextCh()">Weiter zu Kapitel 5 – Transfer →</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /section 4 -->
+
+<!-- ═══════════════════ KAPITEL 5 ═══════════════════ -->
+<div class="section" id="s5">
+
+  <div class="hero hero-rose" data-emoji="✏️">
+    <div class="htag">⏰ Kapitel 5 · ca. 25 Minuten</div>
+    <h1>Transfer: Dein Mini-Angebot</h1>
+    <p>Jetzt planst du ein eigenes pädagogisches Angebot und setzt dabei bewusst Lernprinzipien ein!</p>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-red">5.1 Warm-Up: Lernprinzipien erkennen</span>
+    <h2 style="margin-top:10px">Schnell-Check: Welches Prinzip ist das?</h2>
+
+    <div class="qblock">
+      <div class="qtitle">„Die Fachkraft zeigt den Kindern einen echten Frosch." – Welches Prinzip?</div>
+      <div class="opts" id="q5a">
+        <div class="opt" onclick="ans('q5a',0,false,'q5a-fb')"><div class="ol">A</div> Wiederholung</div>
+        <div class="opt" onclick="ans('q5a',1,true,'q5a-fb')"><div class="ol">B</div> Anschauung</div>
+        <div class="opt" onclick="ans('q5a',2,false,'q5a-fb')"><div class="ol">C</div> Übung</div>
+        <div class="opt" onclick="ans('q5a',3,false,'q5a-fb')"><div class="ol">D</div> Teilschritte</div>
+      </div>
+      <div class="qfb" id="q5a-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">„Kinder pflanzen selbst Samen ein." – Welches Prinzip?</div>
+      <div class="opts" id="q5b">
+        <div class="opt" onclick="ans('q5b',0,true,'q5b-fb')"><div class="ol">A</div> Aktivität</div>
+        <div class="opt" onclick="ans('q5b',1,false,'q5b-fb')"><div class="ol">B</div> Anschauung</div>
+        <div class="opt" onclick="ans('q5b',2,false,'q5b-fb')"><div class="ol">C</div> Individualisierung</div>
+        <div class="opt" onclick="ans('q5b',3,false,'q5b-fb')"><div class="ol">D</div> Variabilität</div>
+      </div>
+      <div class="qfb" id="q5b-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">„Das Lied wird jeden Morgen im Kreis gesungen." – Welches Prinzip?</div>
+      <div class="opts" id="q5c">
+        <div class="opt" onclick="ans('q5c',0,false,'q5c-fb')"><div class="ol">A</div> Teilschritte</div>
+        <div class="opt" onclick="ans('q5c',1,false,'q5c-fb')"><div class="ol">B</div> Variabilität</div>
+        <div class="opt" onclick="ans('q5c',2,true,'q5c-fb')"><div class="ol">C</div> Wiederholung</div>
+        <div class="opt" onclick="ans('q5c',3,false,'q5c-fb')"><div class="ol">D</div> Übung</div>
+      </div>
+      <div class="qfb" id="q5c-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">„Erst nur Stempel, dann erst Pinsel, dann erst Aquarellfarbe." – Welches Prinzip?</div>
+      <div class="opts" id="q5d">
+        <div class="opt" onclick="ans('q5d',0,false,'q5d-fb')"><div class="ol">A</div> Individualisierung</div>
+        <div class="opt" onclick="ans('q5d',1,false,'q5d-fb')"><div class="ol">B</div> Wiederholung</div>
+        <div class="opt" onclick="ans('q5d',2,false,'q5d-fb')"><div class="ol">C</div> Aktivität</div>
+        <div class="opt" onclick="ans('q5d',3,true,'q5d-fb')"><div class="ol">D</div> Teilschritte</div>
+      </div>
+      <div class="qfb" id="q5d-fb"></div>
+    </div>
+  </div>
+
+  <!-- PLANUNGSFORMULAR -->
+  <div class="card">
+    <span class="badge badge-red">5.2 Dein Mini-Angebot planen</span>
+    <h2 style="margin-top:10px">Plane ein eigenes Kita-Angebot</h2>
+    <p>Wähle ein Thema und plane dein Angebot sorgfältig. Beachte dabei mindestens <strong>3 Lernprinzipien</strong>!</p>
+
+    <div class="box box-warn" style="margin-bottom:16px">
+      <label>💡 Themen-Vorschläge</label>
+      <div class="chips">
+        <span class="chip" onclick="setThema(this,'Farben lernen mit Naturmaterialien')">🎨 Farben</span>
+        <span class="chip" onclick="setThema(this,'Obst kennenlernen')">🍎 Obst</span>
+        <span class="chip" onclick="setThema(this,'Bewegungsspiel draußen')">🏃 Bewegung</span>
+        <span class="chip" onclick="setThema(this,'Bilderbuch vorlesen')">📚 Bilderbuch</span>
+        <span class="chip" onclick="setThema(this,'Turm bauen mit Bauklötzen')">🏗 Turm bauen</span>
+        <span class="chip" onclick="setThema(this,'Tiere im Winter')">🦔 Tiere im Winter</span>
+        <span class="chip" onclick="setThema(this,'Eigenes Thema')">✏️ Eigenes Thema</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="fill-q">
+        <label>📌 Thema meines Angebots</label>
+        <input type="text" id="t-thema" placeholder="z.B. Farben lernen mit Herbstblättern...">
+      </div>
+      <div class="fill-q">
+        <label>👥 Zielgruppe (Alter & Anzahl der Kinder)</label>
+        <input type="text" id="t-gruppe" placeholder="z.B. 3–4 Jahre, 6 Kinder">
+      </div>
+      <div class="fill-q">
+        <label>⏰ Zeitumfang</label>
+        <input type="text" id="t-zeit" placeholder="z.B. ca. 20 Minuten">
+      </div>
+      <div class="fill-q">
+        <label>🎯 Ziel: Was sollen die Kinder lernen / können? (Didaktik)</label>
+        <textarea id="t-ziel" placeholder="Die Kinder können..."></textarea>
+      </div>
+      <div class="fill-q">
+        <label>📋 Inhalt & Ablauf (Methodik): Wie läuft das Angebot Schritt für Schritt ab?</label>
+        <textarea id="t-inhalt" style="min-height:110px" placeholder="Schritt 1: ...\nSchritt 2: ...\nSchritt 3: ...\nSchritt 4: ..."></textarea>
+      </div>
+      <div class="fill-q">
+        <label>🧰 Materialien (Was benötige ich?)</label>
+        <textarea id="t-mat" placeholder="z.B. Herbstblätter, Farben, Papier, Lupen..."></textarea>
+      </div>
+      <div class="fill-q">
+        <label>🏷 Welche Lernprinzipien setzt du ein? (Mehrfach anklicken möglich)</label>
+        <div class="cbox-group">
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 👆 Aktivität</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 👀 Anschauung</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 🔄 Wiederholung</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> ✏️ Übung</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 🪜 Teilschritte</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 🎨 Variabilität</label>
+          <label class="cbox-item" onclick="this.classList.toggle('on')"><input type="checkbox"> 🎯 Individualisierung</label>
+        </div>
+      </div>
+      <div class="fill-q">
+        <label>📝 Begründung: Warum hast du diese Lernprinzipien gewählt? (Mindestens 3 Sätze)</label>
+        <textarea id="t-begr" style="min-height:100px" placeholder="Ich habe das Prinzip X gewählt, weil...\nDas Prinzip Y ist hier wichtig, weil...\nAußerdem setze ich Z ein, damit..."></textarea>
+      </div>
+      <div class="fill-q">
+        <label>🔍 Differenzierung: Wie gehst du auf unterschiedliche Entwicklungsniveaus ein?</label>
+        <textarea id="t-diff" placeholder="Für schwächere Kinder: ...\nFür stärkere Kinder: ..."></textarea>
+      </div>
+      <div class="fill-q">
+        <label>💭 Reflexion: Was könnte schiefgehen und wie würdest du damit umgehen?</label>
+        <textarea id="t-refl" placeholder="Mögliches Problem: ...\nMeine Reaktion: ..."></textarea>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-success" onclick="submitTransfer()">✅ Angebot speichern & weiter</button>
+    </div>
+    <div class="qfb" id="transfer-fb"></div>
+  </div>
+
+</div><!-- /section 5 -->
+
+<!-- ═══════════════════ KAPITEL 6 ═══════════════════ -->
+<div class="section" id="s6">
+
+  <div class="hero hero-green" data-emoji="🪞">
+    <div class="htag">⏰ Kapitel 6 · ca. 15 Minuten</div>
+    <h1>Reflexion & Kann-Liste</h1>
+    <p>Fast geschafft! Nimm dir jetzt Zeit, um deinen Lernweg zu reflektieren und deinen Lernstand einzuschätzen.</p>
+  </div>
+
+  <!-- 6.1 ABSCHLUSS-QUIZ -->
+  <div class="card">
+    <span class="badge badge-green">6.1 Abschluss-Quiz</span>
+    <h2 style="margin-top:10px">Teste nochmal dein Gesamtwissen!</h2>
+
+    <div class="qblock">
+      <div class="qtitle">Eine Fachkraft bringt echte Schneeflocken in einem Glas mit. Die Kinder schauen, fassen an, sehen wie sie schmelzen. – Welches Prinzip?</div>
+      <div class="opts" id="q6a">
+        <div class="opt" onclick="ans('q6a',0,false,'q6a-fb')"><div class="ol">A</div> Wiederholung</div>
+        <div class="opt" onclick="ans('q6a',1,true,'q6a-fb')"><div class="ol">B</div> Anschauung</div>
+        <div class="opt" onclick="ans('q6a',2,false,'q6a-fb')"><div class="ol">C</div> Teilschritte</div>
+        <div class="opt" onclick="ans('q6a',3,false,'q6a-fb')"><div class="ol">D</div> Variabilität</div>
+      </div>
+      <div class="qfb" id="q6a-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">Welche Kombination von Prinzipien ist für ein nachhaltiges Kita-Angebot am sinnvollsten?</div>
+      <div class="opts" id="q6b">
+        <div class="opt" onclick="ans('q6b',0,false,'q6b-fb')"><div class="ol">A</div> Nur Aktivität reicht für gute Angebote.</div>
+        <div class="opt" onclick="ans('q6b',1,true,'q6b-fb')"><div class="ol">B</div> Eine sinnvolle Kombination mehrerer Prinzipien je nach Situation und Zielgruppe.</div>
+        <div class="opt" onclick="ans('q6b',2,false,'q6b-fb')"><div class="ol">C</div> Man muss alle 7 Prinzipien in jedem Angebot umsetzen.</div>
+        <div class="opt" onclick="ans('q6b',3,false,'q6b-fb')"><div class="ol">D</div> Die Prinzipien sind nur Theorie und in der Praxis unwichtig.</div>
+      </div>
+      <div class="qfb" id="q6b-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">Was unterscheidet Didaktik von Methodik?</div>
+      <div class="opts" id="q6c">
+        <div class="opt" onclick="ans('q6c',0,true,'q6c-fb')"><div class="ol">A</div> Didaktik = Was & Warum (Ziel, Inhalt, Begründung); Methodik = Wie (Durchführung, Methoden).</div>
+        <div class="opt" onclick="ans('q6c',1,false,'q6c-fb')"><div class="ol">B</div> Didaktik = Wie; Methodik = Was & Warum.</div>
+        <div class="opt" onclick="ans('q6c',2,false,'q6c-fb')"><div class="ol">C</div> Beide bedeuten dasselbe.</div>
+        <div class="opt" onclick="ans('q6c',3,false,'q6c-fb')"><div class="ol">D</div> Didaktik ist nur für Lehrer, Methodik für Erzieherinnen.</div>
+      </div>
+      <div class="qfb" id="q6c-fb"></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qtitle">Warum ist Individualisierung in einer Kita-Gruppe mit Kindern verschiedener Altersstufen besonders wichtig?</div>
+      <div class="opts" id="q6d">
+        <div class="opt" onclick="ans('q6d',0,false,'q6d-fb')"><div class="ol">A</div> Weil ältere Kinder immer bevorzugt werden sollten.</div>
+        <div class="opt" onclick="ans('q6d',1,true,'q6d-fb')"><div class="ol">B</div> Weil Kinder verschiedener Altersstufen sehr unterschiedliche Entwicklungsstände haben und unterschiedliche Herausforderungen brauchen, um zu lernen.</div>
+        <div class="opt" onclick="ans('q6d',2,false,'q6d-fb')"><div class="ol">C</div> Weil jüngere Kinder immer dieselbe Aufgabe wie ältere bekommen sollen.</div>
+        <div class="opt" onclick="ans('q6d',3,false,'q6d-fb')"><div class="ol">D</div> Weil Individualisierung im Lehrplan vorgeschrieben ist.</div>
+      </div>
+      <div class="qfb" id="q6d-fb"></div>
+    </div>
+
+    <div class="score-box" id="sc6">
+      <div class="score-big" id="sc6-val">–</div>
+      <div class="score-label">von 4 Abschlussfragen richtig</div>
+    </div>
+  </div>
+
+  <!-- 6.2 REFLEXIONSFRAGEN -->
+  <div class="card">
+    <span class="badge badge-green">6.2 Meine Reflexion</span>
+    <h2 style="margin-top:10px">Denk über dein Lernen nach</h2>
+    <div class="grid2">
+      <div style="background:var(--tb);border-radius:var(--r12);padding:18px;border:2px solid var(--brd)">
+        <h4 style="font-family:Nunito,sans-serif;font-weight:800;margin-bottom:10px">🌟 Was war neu für dich?</h4>
+        <textarea style="width:100%;border:1.5px solid var(--brd);border-radius:8px;padding:9px;font-family:serif;font-size:.88rem;min-height:90px;background:#fff;resize:vertical" placeholder="Was hast du heute neu gelernt?"></textarea>
+      </div>
+      <div style="background:var(--tb);border-radius:var(--r12);padding:18px;border:2px solid var(--brd)">
+        <h4 style="font-family:Nunito,sans-serif;font-weight:800;margin-bottom:10px">💎 Welches Prinzip findest du am wichtigsten?</h4>
+        <textarea style="width:100%;border:1.5px solid var(--brd);border-radius:8px;padding:9px;font-family:serif;font-size:.88rem;min-height:90px;background:#fff;resize:vertical" placeholder="Und warum?"></textarea>
+      </div>
+      <div style="background:var(--tb);border-radius:var(--r12);padding:18px;border:2px solid var(--brd)">
+        <h4 style="font-family:Nunito,sans-serif;font-weight:800;margin-bottom:10px">🏫 Was nimmst du für die Praxis mit?</h4>
+        <textarea style="width:100%;border:1.5px solid var(--brd);border-radius:8px;padding:9px;font-family:serif;font-size:.88rem;min-height:90px;background:#fff;resize:vertical" placeholder="Was wirst du in deiner Kita-Zeit beachten?"></textarea>
+      </div>
+      <div style="background:var(--tb);border-radius:var(--r12);padding:18px;border:2px solid var(--brd)">
+        <h4 style="font-family:Nunito,sans-serif;font-weight:800;margin-bottom:10px">❓ Was war noch unklar?</h4>
+        <textarea style="width:100%;border:1.5px solid var(--brd);border-radius:8px;padding:9px;font-family:serif;font-size:.88rem;min-height:90px;background:#fff;resize:vertical" placeholder="Was möchtest du noch besprechen?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.3 KANN-LISTE -->
+  <div class="card">
+    <span class="badge badge-green">6.3 Meine Kann-Liste</span>
+    <h2 style="margin-top:10px">Was kann ich jetzt?</h2>
+    <p>Klicke auf die Punkte, die du sicher beherrschst!</p>
+    <div class="kann">
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann alle 7 Lernprinzipien benennen.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann die Lernprinzipien mit eigenen Worten erklären.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann den Unterschied zwischen Didaktik und Methodik erklären.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann Praxissituationen analysieren und Lernprinzipien erkennen.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann erkennen, wenn Lernprinzipien in einem Angebot fehlen.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann Verbesserungsvorschläge für problematische Angebote entwickeln.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann ein eigenes pädagogisches Angebot unter Berücksichtigung von Lernprinzipien planen.
+      </div>
+      <div class="kann-item" onclick="this.classList.toggle('on');this.querySelector('.kann-chk').textContent=this.classList.contains('on')?'✓':'○'">
+        <div class="kann-chk">○</div>Ich kann begründen, warum Lernprinzipien für meine spätere Praxis wichtig sind.
+      </div>
+    </div>
+    <button class="btn btn-success" style="margin-top:14px" onclick="showFinal()">🎉 Kurs abschließen!</button>
+  </div>
+
+  <!-- FINAL -->
+  <div class="card" id="finalCard" style="display:none">
+    <div class="final">
+      <div class="trophy">🏆</div>
+      <h1>Herzlichen Glückwunsch!</h1>
+      <p>Du hast den Selbstlernkurs zu den Lernprinzipien erfolgreich abgeschlossen!<br>Du weißt jetzt, wie du Kinder in der Kita wirklich gut beim Lernen unterstützen kannst.</p>
+    </div>
+
+    <div class="merksatz">
+      <span class="mi">⭐</span>
+      <p>„Gute pädagogische Angebote entstehen nicht zufällig – sie werden <strong>bewusst geplant</strong> und berücksichtigen, wie Kinder am besten lernen."</p>
+    </div>
+
+    <h2 style="margin-top:20px;text-align:center">Deine 7 Lernprinzipien</h2>
+    <div class="grid3" style="margin-top:12px">
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">👆</div><h4>Aktivität</h4><p>Kinder handeln selbst</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">👀</div><h4>Anschauung</h4><p>Sehen & Erleben</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">🔄</div><h4>Wiederholung</h4><p>Mehrfach aufgreifen</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">✏️</div><h4>Übung</h4><p>Durch Üben festigen</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">🪜</div><h4>Teilschritte</h4><p>Schritt für Schritt</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">🎨</div><h4>Variabilität</h4><p>Abwechslung</p></div>
+      <div class="ic" style="border-color:var(--g);background:var(--gl)"><div class="ic-icon">🎯</div><h4>Individualisierung</h4><p>Jedes Kind zählt</p></div>
+    </div>
+  </div>
+
+</div><!-- /section 6 -->
+</div><!-- /main -->
+
+<script>
+// ══════ STATE ══════
+let curCh = 1;
+let done = new Set();
+let quizAnswered = {};
+let dragSel = null;
+let dragItem = null;
+let quizCorrect = {ch2:0, ch6:0};
+let ch2Count = 0, ch6Count = 0;
+let principlesDone = new Set();
+const totalCh = 6;
+
+// ══════ NAVIGATION ══════
+function goCh(n) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.cn-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('cnb'+n).classList.add('active');
+  curCh = n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateProg();
+}
+function nextCh() {
+  done.add(curCh);
+  const btn = document.getElementById('cnb'+curCh);
+  btn.classList.add('done');
+  btn.innerHTML = btn.innerHTML + ' <span class="cn-check">✓</span>';
+  updateProg();
+  if(curCh < totalCh) goCh(curCh + 1);
+}
+function updateProg() {
+  const pct = (done.size / totalCh) * 100;
+  document.getElementById('gp').style.width = pct + '%';
+}
+
+// ══════ QUIZ ══════
+const correctIdx = {
+  q1a:2,q1b:2,
+  q2a:1,q2b:2,q2c:0,q2d:2,q2e:1,
+  q3a:1,q3b:2,q3c:1,q3d:2,q3e:1,q3f:1,q3g:1,q3h:2,q3i:2,q3j:1,q3k:2,q3l:1,
+  q4a:0,q4b:1,q4c:1,q4d:1,q4e:2,
+  q5a:1,q5b:0,q5c:2,q5d:3,
+  q6a:1,q6b:1,q6c:0,q6d:1
+};
+function ans(qid, idx, correct, fbid) {
+  if(quizAnswered[qid]) return;
+  quizAnswered[qid] = true;
+  const opts = document.getElementById(qid).querySelectorAll('.opt');
+  opts.forEach((o,i) => {
+    o.classList.add('dis');
+    if(i === idx) o.classList.add(correct ? 'correct' : 'wrong');
+    if(!correct && i === correctIdx[qid]) o.classList.add('correct');
+  });
+  const fb = document.getElementById(fbid);
+  if(fb) {
+    fb.className = 'qfb show ' + (correct ? 'ok' : 'no');
+    fb.innerHTML = correct ? '✅ Richtig! Super!' : '❌ Leider nicht. Die richtige Antwort ist grün markiert.';
+  }
+  // Chapter 2 score
+  if(['q2a','q2b','q2c','q2d','q2e'].includes(qid)) {
+    if(correct) quizCorrect.ch2++;
+    ch2Count++;
+    if(ch2Count === 5) {
+      const sc = document.getElementById('sc2');
+      sc.classList.add('show');
+      document.getElementById('sc2-val').textContent = quizCorrect.ch2 + '/5';
+    }
+  }
+  // Chapter 6 score
+  if(['q6a','q6b','q6c','q6d'].includes(qid)) {
+    if(correct) quizCorrect.ch6++;
+    ch6Count++;
+    if(ch6Count === 4) {
+      const sc = document.getElementById('sc6');
+      sc.classList.add('show');
+      document.getElementById('sc6-val').textContent = quizCorrect.ch6 + '/4';
+    }
+  }
+}
+
+// ══════ DRAG & DROP ══════
+const goodVals = new Set(['aktiv','wdh','indiv','schr','mat']);
+const badVals = new Set(['erkl','gleich','mono']);
+function ds(e) {
+  dragItem = e.target;
+  e.target.classList.add('drag-active');
+  e.dataTransfer.setData('text/plain', e.target.dataset.v);
+}
+function dov(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('over');
+}
+function dp(e, zone) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('over');
+  const v = e.dataTransfer.getData('text/plain');
+  const el = document.querySelector('[data-v="'+v+'"]');
+  if(el) { el.classList.remove('drag-active'); e.currentTarget.appendChild(el); }
+  dragItem = null;
+}
+document.addEventListener('dragend', ()=>{ if(dragItem){ dragItem.classList.remove('drag-active'); dragItem=null; }});
+// Touch: click to select, click zone to place
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  const zone = e.target.closest('.dnd-zone');
+  if(chip && !zone) {
+    if(dragSel) dragSel.style.outline='';
+    if(dragSel === chip){ dragSel=null; return; }
+    dragSel = chip;
+    chip.style.outline = '2px solid var(--p)';
+    return;
+  }
+  if(zone && dragSel) {
+    dragSel.style.outline='';
+    zone.appendChild(dragSel);
+    dragSel = null;
+  }
+});
+function chkDnD1() {
+  const gut = document.getElementById('z-gut');
+  const schlecht = document.getElementById('z-schlecht');
+  let right=0, total=0;
+  [...gut.querySelectorAll('.chip')].forEach(c=>{total++;if(goodVals.has(c.dataset.v))right++;});
+  [...schlecht.querySelectorAll('.chip')].forEach(c=>{total++;if(badVals.has(c.dataset.v))right++;});
+  const fb = document.getElementById('dnd1-fb');
+  const pct = total > 0 ? Math.round(right/total*100) : 0;
+  fb.className = 'qfb show ' + (pct>=75 ? 'ok' : 'no');
+  fb.innerHTML = pct>=75
+    ? `✅ Sehr gut! ${right} von ${total} richtig zugeordnet. Aktivität, Wiederholung, individuelle Ansätze, kleine Schritte und abwechs. Materialien machen gute Angebote aus!`
+    : `💡 ${right} von ${total} richtig. Tipp: Nur erklären, gleiche Aufgaben und immer gleiche Methoden sind eher problematisch – probiere nochmal!`;
+}
+
+// ══════ MATCHING ══════
+const matchPairs = {
+  'm2-1': 'Aktivität', 'm2-2': 'Anschauung', 'm2-3': 'Aktivität',
+  'm2-4': 'Anschauung', 'm2-5': 'Aktivität', 'm2-6': 'Anschauung'
+};
+let matchSit = null;
+let matchScore = 0;
+let matchTotal = 6;
+function matchClick(el) {
+  if(el.classList.contains('hit')) return;
+  if(el.dataset.g === 'sit') {
+    if(matchSit) matchSit.classList.remove('sel');
+    if(matchSit === el){ matchSit=null; return; }
+    matchSit = el;
+    el.classList.add('sel');
+  } else if(el.dataset.g === 'prin') {
+    if(!matchSit) return;
+    const correct = matchPairs[matchSit.dataset.id] === el.dataset.id;
+    if(correct) {
+      matchSit.classList.remove('sel'); matchSit.classList.add('hit');
+      matchScore++;
+      const fb = document.getElementById('match2-fb');
+      if(matchScore === matchTotal) {
+        fb.className='qfb show ok';
+        fb.innerHTML='✅ Alle '+matchTotal+' Paare richtig! Sehr gut!';
+      }
+    } else {
+      matchSit.classList.remove('sel'); matchSit.classList.add('miss');
+      setTimeout(()=>matchSit.classList.remove('miss'),700);
+    }
+    matchSit = null;
+  }
+}
+
+// ══════ DIDAKTIK/METHODIK MINI ══════
+function didMeth(btn, choice) {
+  const correct = choice === 'D';
+  const sp = document.getElementById('dm1');
+  sp.style.display='inline-flex';
+  sp.className = correct ? 'badge badge-green' : 'badge badge-red';
+  sp.textContent = correct ? '✓ Didaktik' : '✗ → Didaktik';
+}
+function didMeth2(btn, choice) {
+  const correct = choice === 'M';
+  const sp = document.getElementById('dm2');
+  sp.style.display='inline-flex';
+  sp.className = correct ? 'badge badge-green' : 'badge badge-red';
+  sp.textContent = correct ? '✓ Methodik' : '✗ → Methodik';
+}
+function didMeth3(btn, choice) {
+  const correct = choice === 'M';
+  const sp = document.getElementById('dm3');
+  sp.style.display='inline-flex';
+  sp.className = correct ? 'badge badge-green' : 'badge badge-red';
+  sp.textContent = correct ? '✓ Methodik' : '✗ → Methodik';
+}
+
+// ══════ PRINCIPLES ══════
+const pOrder = ['wdh','ue','ts','var','ind'];
+function showP(id) {
+  document.querySelectorAll('.pbody').forEach(p=>p.classList.remove('show'));
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('pb-'+id).classList.add('show');
+  document.getElementById('pt-'+id).classList.add('active');
+}
+function doneP(id, next) {
+  principlesDone.add(id);
+  document.getElementById('pt-'+id).classList.add('done');
+  if(principlesDone.size === 5) {
+    document.getElementById('p3-done-msg').style.display='block';
+    document.getElementById('p3-done-msg2').style.display='block';
+  }
+  if(next) showP(next);
+}
+
+// ══════ HINT ══════
+function tog(id) { document.getElementById(id).classList.toggle('show'); }
+
+// ══════ STATIONS ══════
+function showSta(n) {
+  document.querySelectorAll('.sta-body').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.sta-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('st'+n).classList.add('show');
+  document.getElementById('sb'+n).classList.add('active');
+}
+function markSta(n) {
+  document.getElementById('sb'+n).classList.add('done');
+}
+function showSol(n) {
+  const el = document.getElementById('sol'+n);
+  el.classList.add('show');
+}
+
+// ══════ TRANSFER ══════
+function setThema(el, val) {
+  document.getElementById('t-thema').value = val;
+}
+function submitTransfer() {
+  const thema = document.getElementById('t-thema').value.trim();
+  const ziel = document.getElementById('t-ziel').value.trim();
+  const inhalt = document.getElementById('t-inhalt').value.trim();
+  const begr = document.getElementById('t-begr').value.trim();
+  const checked = document.querySelectorAll('.cbox-item.on').length;
+  const fb = document.getElementById('transfer-fb');
+  if(!thema||!ziel||!inhalt) {
+    fb.className='qfb show no'; fb.innerHTML='⚠️ Bitte fülle mindestens Thema, Ziel und Ablauf aus!'; return;
+  }
+  if(checked < 3) {
+    fb.className='qfb show no'; fb.innerHTML='⚠️ Wähle mindestens 3 Lernprinzipien aus!'; return;
+  }
+  if(begr.length < 50) {
+    fb.className='qfb show no'; fb.innerHTML='⚠️ Bitte begründe deine Lernprinzipien etwas ausführlicher (mind. 3 Sätze)!'; return;
+  }
+  fb.className='qfb show ok';
+  fb.innerHTML = `✅ Dein Angebot „${thema}" mit ${checked} Lernprinzipien wurde gespeichert! Weiter zu Kapitel 6 →`;
+  setTimeout(()=>nextCh(), 2500);
+}
+
+// ══════ ACCORDION ══════
+function accToggle(el) {
+  el.classList.toggle('open');
+  const bd = el.nextElementSibling;
+  bd.classList.toggle('show');
+}
+
+// ══════ FINAL ══════
+function showFinal() {
+  done.add(6);
+  document.getElementById('cnb6').classList.add('done');
+  updateProg();
+  document.getElementById('finalCard').style.display='block';
+  setTimeout(()=>document.getElementById('finalCard').scrollIntoView({behavior:'smooth'}),100);
+}
+</script>
+</body>
+</html>
